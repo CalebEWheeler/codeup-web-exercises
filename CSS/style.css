@@ -2,3 +2,112 @@
     color: purple;
     text-decoration: underline;
 }
+
+#top {
+    text-align: center;
+}
+
+header {
+    background-color: darkslategray;
+    border-style: double;
+    border-color: darkgoldenrod;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: darkolivegreen;
+    text-decoration: underline;
+    text-align: center;
+}
+
+body {
+    background-color: mediumaquamarine;
+    background-image: url("../img/topo2.jpeg");
+    background-position: center;
+    background-attachment: fixed;
+    background-size: auto;
+    font-family: Chalkboard;
+}
+
+ol {
+    list-style: upper-roman;
+    border-style: double;
+}
+
+li {
+    color: darkred;
+}
+
+ul {
+    list-style: circle;
+    border-style: double;
+}
+
+.man {
+    height: 18em;
+}
+
+img {
+    width: 45%;
+    border-style: groove;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.th {
+    text-align: center;
+}
+
+table {
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    color: maroon;
+    border-style: groove;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+th {
+    background-image: url("../img/intJ.jpeg");
+    border-style: double;
+
+}
+
+td {
+    border-style: groove;
+}
+
+a:hover {
+    text-decoration: none;
+    color: purple;
+    font-size: 1.5rem;
+}
+
+a:visited {
+    text-decoration: none;
+    color: green;
+}
+
+a:link {
+    text-decoration: none;
+    color: darkgreen;
+}
+
+a:active {
+    text-decoration: none;
+    color: aqua;
+}
+
+p {
+    text-align: center;
+    color: darkgoldenrod;
+}
+
+footer {
+    text-align: center;
+}
+
+
+
+
+
+
