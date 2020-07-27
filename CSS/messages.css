@@ -1,0 +1,52 @@
+:root {
+    /*you can set variables in CSS and call them*/
+    --blue-bg-color: #cddeff;
+    --blue-font-color:#5252a4;
+    --green-bg-color: #cff3da;
+    --green-font-color: #277c4b;
+    --yellow-bg-color: #fcfdc3;
+    --yellow-font-color: #8b7500;
+    --red-bg-color: #ffd0d7;
+    --red-font-color: #A52A2A;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Ubuntu, sans-serif;
+}
+
+.message {
+    width: 95%;
+    height: 2.5%;
+    padding: .5em;
+    border: 1px solid #D3D3D3;
+    margin: .5em;
+    border-radius: .25em;
+}
+
+.message-info {
+    color: var(--blue-font-color);
+    /*background-color: #1166FF44;*/
+    background-color: var(--blue-bg-color);
+}
+
+.message-success {
+    color: var(--green-font-color);
+    /*background-color: #90EE9977;*/
+    background-color: var(--green-bg-color);
+}
+
+.message-warning {
+    color: var(--yellow-font-color);
+    /*background-color: #FFFF3355;*/
+    background-color: var(--yellow-bg-color);
+}
+
+.message-error {
+    color: var(--red-font-color);
+    /*background-color: #ffcccbCC;*/
+    background-color: var(--red-bg-color);
+}
