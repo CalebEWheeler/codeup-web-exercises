@@ -60,6 +60,28 @@ a {
     float: right;
     line-height: 80px;
 }
+.profile-details{
+    float: left;
+    width: calc(25% - 1em);
+    margin: 0 .5em;
+}
+.profile-items {
+    padding: 0;
+    list-style-type: none;
+}
+.profile-entry {
+    margin: .5em;
+}
+.timeline {
+    float:left;
+    width: calc(50% - 1em);
+    margin: 0 .5em;
+}
+.who-to-follow {
+    float: right;
+    width: calc(25% - 1em);
+    margin: 0 .5em;
+}
 .btn {
     border: 1px solid var(--main-link-color);
     color: var(--main-link-color);
@@ -82,23 +104,8 @@ a {
 .text-muted {
     color: var(--main-link-color);
 }
-.profile-details{
-    float: left;
-    width: calc(25% - 1em);
-    margin: 0 .5em;
-}
-.timeline {
-    float:left;
-    width: calc(50% - 1em);
-    margin: 0 .5em;
-}
-.who-to-follow {
-    float: right;
-    width: calc(25% - 1em);
-    margin: 0 .5em;
-}
 .container {
-    margin: 2em;
+    margin-top: 2em;
 }
 .media {
     width: 100%;
@@ -115,11 +122,4 @@ a {
 .media-body {
     float: left;
     width:calc(100% - 50px);
-}
-.profile-items {
-    padding: 0;
-    list-style-type: none;
-}
-.profile-entry {
-    margin: .5em;
 }
