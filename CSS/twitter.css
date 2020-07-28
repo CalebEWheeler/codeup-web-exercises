@@ -27,7 +27,6 @@ a {
 }
 .top-nav {
     background: var(--light-bg);
-    /*set position to fixed and width to 100%*/
     position: fixed;
     width: 100%;
     z-index: 1000;
@@ -55,7 +54,7 @@ a {
 }
 .profile-form {
     float: right;
-    line-height:80px;
+    line-height: 80px;
 }
 .btn {
     border: 1px solid var(--main-link-color);
@@ -114,7 +113,6 @@ a {
     width:calc(100% - 50px);
 }
 .profile-items {
-    margin: .5em;
     padding: 0;
     list-style-type: none;
 }
