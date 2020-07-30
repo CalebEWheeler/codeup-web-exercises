@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+/*    remove default font*/
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: lightgray;
+}
+
+.nav-links li {
+    list-style-type: none;
+}
+
+.nav-links li:nth-child(5) {
+    margin: 0 auto;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    padding: 0 1em;
+}
+
+.nav-item a {
+    display: inline-block;
+    font-family: 'Work Sans', sans-serif;
+    color: black;
+
+}
+
+.nav-item a:hover {
+    color: blue;
+}
+
+#logo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3em;
+    padding: .2em 0;
+}
+
+
