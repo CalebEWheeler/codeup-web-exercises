@@ -5,6 +5,44 @@
 /*    remove default font*/
 }
 
+footer {
+    position: fixed;
+    bottom: 0;
+    height: 20em;
+    width: 100%;
+    background-color: lightgray;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+button {
+    background-color: darkorange;
+    color: white;
+    height: 2.5em;
+    width: 6em;
+    border-radius: 3.5em;
+    border: orange;
+    font-family: 'Work Sans', sans-serif;
+}
+
+input {
+    height: 2.5em;
+    width: 18em;
+    border-radius: 2.5em;
+}
+
+input::placeholder {
+    margin: 0 2em;
+}
+
+small {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2em;
+}
+
 .nav-links {
     display: flex;
     justify-content: space-between;
@@ -16,13 +54,13 @@
     list-style-type: none;
 }
 
-.nav-links li:nth-child(5) {
-    margin: 0 auto;
-}
-
 .nav-links li a {
     text-decoration: none;
     padding: 0 1em;
+}
+
+.nav-links li:nth-child(5) {
+    margin: 0 auto;
 }
 
 .nav-item a {
@@ -36,10 +74,59 @@
     color: blue;
 }
 
+.container2 {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2em;
+    height: 20em;
+    /*margin-left: auto;*/
+}
+
+.container2 a {
+    /*display: inline-block;*/
+    /*color: black;*/
+    /*text-decoration: none;*/
+    /*font-family: 'Work Sans', sans-serif;*/
+}
+
+.container2 li {
+    list-style-type: none;
+}
+
+.foot a {
+    display: flex;
+    color: black;
+    text-decoration: none;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.social-media-links {
+    display: flex;
+    /*flex-direction: column;*/
+}
+
+/*.social-media-links a:nth-child(2) {*/
+/*    order: 7;*/
+/*}*/
+
+/*.social-media-links a:nth-child(3)*/
+/*.social-media-links a:nth-child(4)*/
+/*.social-media-links a:nth-child(5)*/
+/*.social-media-links a:nth-child(6)*/
+/*.social-media-links a:nth-child(7) {*/
+
+/*}*/
+
+.email {
+    /*justify-content: flex-end;*/
+    align-items: flex-end;
+}
+
 #logo {
     font-family: 'Montserrat', sans-serif;
     font-size: 3em;
     padding: .2em 0;
 }
+
 
 
