@@ -58,11 +58,12 @@ var amazonTotal = (answer8 * answer9);
 alert('Your total dollars earned is $' + (googleTotal + facebookTotal + amazonTotal));
 
 
-var question10 = 'Can the student enroll in the class?';
-var answer10 = prompt(question10);
-var question11 = 'Does the class conflict with her schedule?';
-var answer11 = prompt(question11);
-var question
+
+var offerExpired = false;
+var numberItems = 5;
+var premiumMembership = true;
+var offerApplied = (numberItems > 2 || premiumMembership) && !offerExpired;
+var numberOfItems = prompt('How many items do you have?');
 
 
 
