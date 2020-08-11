@@ -57,8 +57,9 @@ var amazonTotal = (answer8 * answer9);
 //console.log("You made $" + income + " this week.");
 alert('Your total dollars earned is $' + (googleTotal + facebookTotal + amazonTotal));
 
+//enrollment
 
-
+//product offer
 var offerExpired = false;
 var numberItems = 5;
 var premiumMembership = true;
