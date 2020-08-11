@@ -3,8 +3,8 @@ console.log('Hello from external JavaScript.')
 
 alert('Welcome to my Website!')
 
-// let userInput = prompt('What is your favorite color?')
-// alert('No way! ' + userInput + ' is my favorite color too!')
+var userInput = prompt('What is your favorite color?')
+alert('No way! ' + userInput.toUpperCase() + ' is my favorite color too!')
 
 //movie rental
 var question1 = 'How many days are you going to rent The Little Mermaid?';
@@ -58,20 +58,19 @@ var amazonTotal = (answer8 * answer9);
 alert('Your total dollars earned is $' + (googleTotal + facebookTotal + amazonTotal));
 
 //enrollment
-
-//product offer
-var offerExpired = false;
-var numberItems = 5;
-var premiumMembership = true;
-var offerApplied = (numberItems > 2 || premiumMembership) && !offerExpired;
-var numberOfItems = prompt('How many items do you have?');
-
-
-
 //     A student can be enrolled in a class only if the class is not full and the class schedule
 // does not conflict with her current schedule.
+var classSize = 30;
+var registered = 20;
+var classConflict = true;
+var canEnroll = (classSize > registered) && !classConflict;
+alert('Student able to register for class: ' +canEnroll);
+
+//product offer
 //     A product offer can be applied only if a person buys more than 2 items, and the offer has
 // not expired. Premium members do not need to buy a specific amount of products.
-
-
-
+var offerNOTExpired = confirm("Press ok if offer not expired");
+var numberItems = prompt("How many items are you purchasing today?");
+var premiumMembership = confirm("Press ok if you are a premium member");
+var offerApplied = (numberItems > 2 || premiumMembership) && offerNOTExpired;
+alert("Offer applied: " + offerApplied);
