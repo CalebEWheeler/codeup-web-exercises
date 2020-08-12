@@ -52,10 +52,10 @@ var random = Math.floor((Math.random() * 3) + 1);
 //  * number)
 //  */
 function isTwo(num) {
-    return console.log(num == 2);
+    return (num == 2);
 }
-isTwo(random);
-console.log(random);
+console.log(isTwo(random));
+
 // /**
 //  * TODO:
 //  * Create a function named 'calculateTip' to calculate a tip on a bill at a
@@ -69,7 +69,8 @@ console.log(random);
 //  */
 
 var calculateTip = function(percentage,bill) {
-    return (percentage*bill);
+    var tipAmount = (percentage*bill);
+    return tipAmount;
 }
 console.log(calculateTip(0.20, 20));
 console.log(calculateTip(0.25, 25.50));
@@ -84,7 +85,7 @@ console.log(calculateTip(0.15, 33.42));
 
 var a = prompt("What is the bill total?")
 var b = prompt("What percentage would you like to tip?")
-alert("Based off of your percentage, your tip amount is $"+ parseFloat(calculateTip(a,b)));
+alert("Based off of your percentage, your tip amount is $"+ (calculateTip(a,b)));
 
 
 // /**
