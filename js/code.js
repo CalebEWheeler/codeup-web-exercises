@@ -52,5 +52,5 @@ function sayHello(input) {
 // Exercise #9 add/commit/push
 // Exercise #10 isFive()
 function isFive(input) {
-    return true;
+    return Number(input) === 5;
 }
