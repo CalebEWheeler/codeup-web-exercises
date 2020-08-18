@@ -76,9 +76,8 @@ describe("returnTenEvenOddMessages", function() {
         }
 
         // TODO: assert that the outputContainsExpectedNumbers function returns true
-        it('function outputContainsExpectedNumbers should return true', function() {
-           expect(outputContainsExpectedNumbers()).toEqual(true);
-        });
+           expect(outputContainsExpectedNumbers()).toBe(true);
+
     });
 });
 
@@ -86,16 +85,14 @@ describe("returnTenEvenOddMessages", function() {
 // Number Sail Tests
 describe("returnNumberSail", function() {
     // TODO: include a test to verify that the function is defined
-    it('should be defined', function() {
-        expect(returnNumberSail).toBeDefined();
+    it("should be defined", function() {
+        expect(returnNumberSail).toBeDefined()
     });
     // TODO: include a test to verify that the function output is a string
-    it('function output should be a string', function() {
-        expect(typeof returnNumberSail()).toEqual('string');
+    it("output should be a string", function() {
+        expect(typeof returnNumberSail()).toEqual("string")
     });
     // TODO: include a test to verify that the function output matches the following value
-    it('function output should match number sail structure', function() {
-       // expect()
     var expectedValue = "1\n" +
         "22\n" +
         "333\n" +
@@ -105,9 +102,39 @@ describe("returnNumberSail", function() {
         "7777777\n" +
         "88888888\n" +
         "999999999";
-    })
+    it("function output should match number sail structure", function() {
+        expect(returnNumberSail()).toEqual(expectedValue)
+    });
 });
 
 
 // Count Down in Fives Tests
 // TODO: include another test suite that verifies that returnCountDownFrom100InFives is defined (first test) and returns the expected output (second test)
+describe("countDownByFives", function () {
+    it("should be defined", function () {
+        expect(countDownByFives).toBeDefined()
+    })
+    var expectedCountDown = "100\n" +
+        "95\n" +
+        "90\n" +
+        "85\n" +
+        "80\n" +
+        "75\n" +
+        "70\n" +
+        "65\n" +
+        "60\n" +
+        "55\n" +
+        "50\n" +
+        "45\n" +
+        "40\n" +
+        "35\n" +
+        "30\n" +
+        "25\n" +
+        "20\n" +
+        "15\n" +
+        "10\n" +
+        "5"
+    it("function output should match number sail structure", function() {
+        expect(countDownByFives()).toBe(expectedCountDown)
+    });
+});
