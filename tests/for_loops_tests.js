@@ -76,7 +76,9 @@ describe("returnTenEvenOddMessages", function() {
         }
 
         // TODO: assert that the outputContainsExpectedNumbers function returns true
-
+        it('function outputContainsExpectedNumbers should return true', function() {
+           expect(outputContainsExpectedNumbers()).toEqual(true);
+        });
     });
 });
 
