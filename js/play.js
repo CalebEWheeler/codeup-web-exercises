@@ -28,8 +28,9 @@ var names = [
     let i = names.length;
     let round = Math.floor(Math.random()*names.length)
     console.log(names[round]);
-    var originalPosition = round;
-    var newPosition = names.length;
+    names.join(names.substr([round]))
+    // var originalPosition = round;
+    // var newPosition = names.length;
 
     // let remainingPlayers = names.pop(round);
     // console.log(names.slice(round))
