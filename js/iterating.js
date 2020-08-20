@@ -27,7 +27,8 @@
      * Write some code that uses a for loop to log every item in the names
      * array.
      */
-    for (var i = 0; i < names.length; i++) {
+    // going backwards: for (let i=names.length-1; i>=0; i--)
+    for (let i = 0; i < names.length; i++) {
         console.log(names[i]);
     }
     /**
@@ -51,19 +52,21 @@
      *  > second([1, 2, 3, 4, 5]) // returns 2
      *  > last([1, 2, 3, 4, 5]) // return 5
      */
-    var nums = [1, 2, 3, 4, 5];
-    function first() {
-        return nums[0]
+
+    var first = function (arr) {
+        return arr[0]
     }
-    console.log(first())
-    function second() {
-        return nums[1]
+    console.log(first([1, 2, 3, 4, 5]))
+
+    var second = function(arr) {
+        return arr[1]
     }
-    console.log(second())
-    function last() {
-        return nums[4]
+    console.log(second([1, 2, 3, 4, 5]))
+
+    var last = function(arr) {
+        return arr[arr.length-1]
     }
-    console.log(last())
+    console.log(last([1, 2, 3, 4, 5]))
 })();
 
 // var daysOfTheWeek = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
