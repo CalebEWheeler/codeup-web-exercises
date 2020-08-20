@@ -23,8 +23,8 @@
      * list. You will need an opening AND closing <ul> tags around the entire
      * string, and <li> tags around each planet.
      */
-    let planets = "Mercury,Venus,Earth,Mars,Jupiter,Saturn,Uranus,Neptune";
-    let splittingPlanets = planets.split(",");
+    let planets = "Mercury|Venus|Earth|Mars|Jupiter|Saturn|Uranus|Neptune";
+    let splittingPlanets = planets.split("|");
     console.log(splittingPlanets.join("<br>"));
 
     // Bonus //
