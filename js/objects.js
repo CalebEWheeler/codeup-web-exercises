@@ -12,8 +12,8 @@
      *  > console.log(person.lastName) // "Sanchez"
      */
     var person = {
-        firstName: "Rick",
-        lastName: "Sanchez"
+        firstName: "Caleb",
+        lastName: "Wheeler"
     }
     console.log(person.firstName) // "Rick"
     console.log(person.lastName) // "Sanchez"
@@ -27,11 +27,15 @@
      * > console.log(person.sayHello()) // "Hello from Rick Sanchez!"
      */
     var person = {
-        firstName: "Rick",
-        lastName: "Sanchez",
+        firstName: "Caleb",
+        lastName: "Wheeler",
         sayHello() {
             return "Hello from " + person.firstName + " " + person.lastName + "!"
         }
+        //=========another method=========
+        //    person.sayHello = function() {
+        //     return "Hello from " + this.firstName + " " + this.lastName + "!"
+        // }
     }
     console.log(person.sayHello()) // "Hello from Rick Sanchez!"
     /** TODO:
@@ -56,13 +60,13 @@
 // discount = origCost - origCost * disc
 
     shoppers.forEach(function (shopper) {
+        var discount = shopper.amount * .12;
         if (shopper.amount < 200) {
             console.log("The shopper " + shopper.name + " spent " + shopper.amount + " on groceries. " + shopper.name +
                 " does not qualify for the discount.")
         } else if (shopper.amount >= 200) {
             console.log("The shopper " + shopper.name + " spent " + shopper.amount + " on groceries. " + shopper.name +
-                " qualifies for a 12% discount. " + shopper.name + "'s amount after the discount is " +
-                "" + (shopper.amount - (shopper.amount * .12)) + ".")
+                " qualifies for a $"+discount+" discount. " + shopper.name + "'s amount after the discount is $" + (shopper.amount - (discount)) + ".")
         }
     })
 
