@@ -152,29 +152,10 @@
      *      ---
      *      ...
      */
-    books.forEach(function (book, i) {
-        console.log("Book #" + (i + 1) + "\nTitle: " + book.title + "\nAuthor: " + book.author.firstName + " " + book.author.lastName + "\n---")
+    // books.forEach(function (book, i) {
+    //     console.log("Book # " + (i + 1) + "\nTitle: " + book.title + "\nAuthor: " + book.author.firstName + " " + book.author.lastName + "\n---")
+    // })
 
-        function createBook(title, authorFN, authorLN) {
-            var create = function (books, books2) {
-                return books2.push({
-                    title: (title),
-                    author: {
-                        firstName: authorFN,
-                        lastName: authorLN,
-                    }
-                })
-            }
-
-        }
-
-        createBook("The Lord of the Rings", "John", "Tolkien")
-
-    })
-    // var showBookInfo = function(book) {
-    // var output = '' +
-    //     'output += title + book.title+ \n'
-    // }
 
     /**
      * Bonus:
@@ -186,6 +167,29 @@
      *   outputs the information described above. Refactor your loop to use your
      *   `showBookInfo` function.
      */
+    function createBook(title, firstName, lastName) {
+        var book = {}
+        book.title=title;
+        book.author= {
+            firstName: firstName,
+            lastName: lastName
+        }
+        return book;
+    }
+    books.push(createBook("The Lord of the Rings", "John", "Tolkien"))
 
+    // books.forEach(function (book, i) {
+    //     console.log("Book # " + (i + 1) + "\nTitle: " + book.title + "\nAuthor: " + book.author.firstName + " " + book.author.lastName + "\n---")
+    // })
+
+var showBookInfo = function(book, bookNumber) {
+    console.log(console.log("Book # " + bookNumber +
+        "\nTitle: " + book.title +
+        "\nAuthor: " + book.author.firstName + " " + book.author.lastName +
+        "\n---"))
+    }
+    books.forEach(function(book,i) {
+        showBookInfo(book, i+1);
+    })
 
 })();
