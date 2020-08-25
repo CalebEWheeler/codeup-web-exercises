@@ -3,22 +3,176 @@
 <head>
     <title>External JS</title>
 </head>
-<body>
-<h1>This is a demo page</h1>
-<button type="button" onClick="reloadFromCache()">Refresh!</button>
-<button type="button" onClick="reloadFromServer()">Refresh!</button>
-<h2>Hi</h2>
+
+<!--=========== ===========-->
+
+
+
+<!--===========Mini-Lab on changing the style as well as getting a data attribute===========-->
+
+
+<!--MINI LAB-->
+<!--Using the code below:-->
+<!--Change the style of p1 to 'font-size: 4rem'-->
+<!--Get the data-* attribute from p2-->
+<!--Print the data-* attribute on the console log.-->
+
+<!--<body bgcolor="#faebd7">-->
+<!--<p id="p1">To be or not to be?</p>-->
+<!--<p id="p2" data-playname="Hamlet">That is the question.</p>-->
+<!--<script>-->
+<!--    "use strict";-->
+<!--    (function() {-->
+<!--        // Change the style of p1 to 'font-size: 4rem'-->
+<!--        let p1 = document.getElementById('p1')-->
+<!--        p1.setAttribute('style', 'font-size: 4rem')-->
+<!--        // Get the data-* attribute from p2-->
+<!--        let p2 = document.getElementById('p2')-->
+<!--        let dataAttr = p2.getAttribute('data-playname')-->
+
+<!--        // Print the data-* attribute on the console log.-->
+<!--        console.log(dataAttr)-->
+<!--    })();-->
+<!--</script>-->
+<!--</body>-->
+
+<!--===========innerHTML/innerText     !!!NEED TO COMPLETE!!!===========-->
+
+<!--<body>-->
+<!--<heading>This is a heading</heading>-->
+<!--<p id="demo"></p>-->
+<!--<p id="demoText"></p>-->
+
+<!--<script>-->
+<!--    "use strict";-->
+<!--    (function() {-->
+<!--        // Get the main heading p by id-->
+<!--        var p1 = document.getElementById('demo');-->
+<!--        var p2 = document.getElementById('demoText');-->
+
+<!--        // Get the main heading p by id-->
+<!--        var mainHeading = document.getElementById('main-heading');-->
+
+<!--        console.log(mainHeading.innerHTML); // Prints Hello World!-->
+
+<!--        // Assign a new value to the inner HTML of the main heading-->
+<!--        mainHeading.innerHTML = "Hello Codeup!";-->
+
+<!--        console.log(mainHeading.innerHTML); // Prints Hello Codeup!-->
+
+<!--        // Get the main section div by id-->
+<!--        var mainSection = document.getElementById('main-section');-->
+
+<!--        console.log(mainSection.innerHTML);-->
+<!--        // p1.innerHTML = "<b>Hello IO</b>";-->
+<!--        // console.log(p1.innerHTML)-->
+<!--        // p1.innerText = "<b>Hello IO</b>";-->
+<!--        // console.log(p1.innerText)-->
+<!--    })();-->
+<!--</script>-->
+
+<!--===========Form where we have a default value and save a new value to username===========-->
+
+<!--<form name="login">-->
+<!--    <div>-->
+<!--        <label for="text">Enter some text</label>-->
+<!--        <input id="text" name="sometext" type="text" value="user">-->
+<!--    </div>-->
+<!--</form>-->
+<!--<br>-->
+<!--<button onclick="saveText()">Save Text</button>-->
+<!--<br><br>-->
+<!--<h1 id="out"></h1>-->
+<!--<script>-->
+<!--    "use strict";-->
+<!--    let hout = document.getElementById('out');-->
+<!--    (function() {-->
+<!--        // get the "username" input-->
+<!--        var usernameInput = document.forms.login.sometext;-->
+<!--        // log the value of the "username" input-->
+<!--        hout.innerText = usernameInput.value;-->
+<!--    })();-->
+<!--    function saveText() {-->
+<!--        var usernameInput = document.forms.login.sometext;-->
+<!--        console.log(hout.innerText = usernameInput.value);-->
+<!--        hout.innerText = usernameInput.value;-->
+
+<!--    }-->
+<!--</script>-->
+
+
+<!--============================How to get elements by id============================-->
+
+<!--<h1>This is a demo page</h1>-->
+
+<!--<h1 id="demo"></h1>-->
+<!--<script>-->
+<!--    "use strict";-->
+<!--    (function() {-->
+<!--        var paragraph = document.getElementById('demo');-->
+<!--        paragraph.innerHTML = 'IO Rocks!';-->
+<!--    })();-->
+<!--</script>-->
+
+
+<!--============================How to get elements by tag name============================-->
+<!--<heading>This is a heading</heading>-->
+<!--<p class="b">I'm B</p>-->
+<!--<p class="a">I'm A</p>-->
+<!--<p class="b">I'm B</p>-->
+<!--<script>-->
+<!--    "use strict";-->
+<!--    (function() {-->
+<!--        // Get all elements with class 'even'-->
+<!--        var getTag = document.getElementsByTagName('p')-->
+<!--        // Print the first element-->
+<!--        // alert(evenElements[0].innerHTML); // Prints li.even.list-one-item-->
+<!--        // Print all elements-->
+<!--        var output = ''-->
+<!--        for (var i = 0; i < getTag.length; i++) {-->
+<!--            output += getTag[i].outerHTML + '\n'-->
+<!--        }-->
+<!--        alert(output);-->
+<!--    })();-->
+<!--</script>-->
+
+<!--============================How to get elements by class name============================-->
+
+<!--<script>-->
+<!--    "use strict";-->
+<!--    (function() {-->
+<!--        // Get all elements with class 'even'-->
+<!--        var evenElements = document.getElementsByClassName('b');-->
+<!--        // Print the first element-->
+<!--        // alert(evenElements[0].innerHTML); // Prints li.even.list-one-item-->
+<!--        // Print all elements-->
+<!--        var output = ''-->
+<!--        for (var i = 0; i < evenElements.length; i++) {-->
+<!--            output += evenElements[i].outerHTML + '\n'-->
+<!--        }-->
+<!--        alert(output);-->
+<!--    })();-->
+<!--</script>-->
+
+
+<!--============================How to reload page from cache or server============================-->
+
+<!--<button type="button" onClick="reloadFromCache()">Refresh!</button>-->
+<!--<button type="button" onClick="reloadFromServer()">Refresh!</button>-->
+<!--<h2>Hi</h2>-->
 <!--<script src="js/external.js"></script>-->
 <!--<script src="js/play.js">-->
-<script>
-    function reloadFromCache() {
-        location.reload();
-        alert("from cache, possibly")
-    }
-    function reloadFromServer() {
-        location.reload(true);
-        alert('from server')
-    }
-</script>
+<!--<script>-->
+<!--    // reload functions-->
+<!--    // function reloadFromCache() {-->
+<!--    //     location.reload();-->
+<!--    //     alert("from cache, possibly")-->
+<!--    // }-->
+<!--    // function reloadFromServer() {-->
+<!--    //     location.reload(true);-->
+<!--    //     alert('from server')-->
+<!--    // }-->
+<!--    -->
+<!--</script>-->
 </body>
 </html>
