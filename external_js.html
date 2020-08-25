@@ -4,6 +4,21 @@
     <title>External JS</title>
 </head>
 <body>
-<script src="js/external.js"></script>
+<h1>This is a demo page</h1>
+<button type="button" onClick="reloadFromCache()">Refresh!</button>
+<button type="button" onClick="reloadFromServer()">Refresh!</button>
+<h2>Hi</h2>
+<!--<script src="js/external.js"></script>-->
+<!--<script src="js/play.js">-->
+<script>
+    function reloadFromCache() {
+        location.reload();
+        alert("from cache, possibly")
+    }
+    function reloadFromServer() {
+        location.reload(true);
+        alert('from server')
+    }
+</script>
 </body>
 </html>
