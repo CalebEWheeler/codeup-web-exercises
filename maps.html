@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Maps</title>
+
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet'/>
+</head>
+<body>
+<h1>Maps</h1>
+<div id='map' style='width: 400px; height: 300px;'></div>
+
+
+<script src="js/keys.js"></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
+<script>
+    //   <================================ Learning Mapbox API basics ===============================>
+
+
+    mapboxgl.accessToken = 'pk.eyJ1IjoiY2FsZWJ3aGVlbGVyIiwiYSI6ImNrZWN4MHF5eDAwMTAycm16a3psZm4yeGYifQ.TPxlV9LK002eq2AvbiB1sg';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/satellite-v9',
+        // logoPosition: 'top-right',
+        // zoom: 15,
+        // center: [-98.4861, 29.4260],
+        // pitch: 30,
+    });
+    //
+    // //markers
+    // var marker = new mapboxgl.Marker().setLngLat([-98.4935, 29.4264]).addTo(map);
+    // var burj = new mapboxgl.Marker().setLngLat([55.2744, 25.1972]).addTo(map);
+    // var eiffel = new mapboxgl.Marker().setLngLat([2.945, 48.8584]).addTo(map);
+    //
+    // //attach popup message to marker
+    //
+    // //set marker
+    // var alamoMarker = new mapboxgl.Marker().setLngLat([-98.4861, 29.4260]).addTo(map);
+    // //set popup
+    // var alamoPopup = new mapboxgl.Popup().setHTML("<p>Remember The Alamo!</p>").addTo(map)
+    // //attach popup to marker
+    // alamoMarker.setPopup(alamoPopup)
+    //
+    // //need to complete Popup for codeup
+    // var codeupPopup = new mapboxgl.Popup().setHTML("<p>Codeup Rocks!</p>").addTo(map)
+
+
+
+
+    //   <================================ Geocoding exercise ===============================>
+    "use strict";
+
+    /***
+     * geocode is a method to search for coordinates based on a physical address and return
+     * @param {string} search is the address to search for the geocoded coordinates
+     * @param {string} token is your API token for MapBox
+     * @returns {Promise} a promise containing the latitude and longitude as a two element array
+     *
+     * EXAMPLE:
+     *
+     *  geocode("San Antonio", API_TOKEN_HERE).then(function(results) {
+     *      // do something with results
+     *  })
+     *
+     */
+    function geocode(search, token) {
+        var baseUrl = 'https://api.mapbox.com';
+        var endPoint = '/geocoding/v5/mapbox.places/';
+        return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + token)
+            .then(function (res) {
+                return res.json();
+                // to get all the data from the request, comment out the following three lines...
+            }).then(function (data) {
+                return data.features[0].center;
+            });
+    }
+//   <================================ curriculum example ===============================>
+
+    console.log("Coodinates for Codeup: [-98.489615, 29.426827");
+    geocode("600 Navarro St #350", MAPBOX_TOKEN).then(function (result) {
+        console.log("Geocoded results: " + result);
+        map.setCenter(result);
+        map.setZoom(15);
+    });
+    /***
+     * reverseGeocode is a method to search for a physical address based on inputted coordinates
+     * @param {object} coordinates is an object with properties "lat" and "lng" for latitude and longitude
+     * @param {string} token is your API token for MapBox
+     * @returns {Promise} a promise containing the string of the closest matching location to the coordinates provided
+     *
+     * EXAMPLE:
+     *
+     *  reverseGeocode({lat: 32.77, lng: -96.79}, API_TOKEN_HERE).then(function(results) {
+     *      // do something with results
+     *  })
+     *
+     */
+    function reverseGeocode(coordinates, token) {
+        var baseUrl = 'https://api.mapbox.com';
+        var endPoint = '/geocoding/v5/mapbox.places/';
+        return fetch(baseUrl + endPoint + coordinates.lng + "," + coordinates.lat + '.json' + "?" + 'access_token=' + token)
+            .then(function(res) {
+                return res.json();
+            })
+            // to get all the data from the request, comment out the following three lines...
+            .then(function(data) {
+                return data.features[0].place_name;
+            });
+    }
+
+//   <================================ curriculum example ===============================>
+
+    var geekdom = {lng: -98.4935, lat: 29.4264};
+    var burj = {lng: 55.2744, lat: 25.1972};
+    var eiffel = {lng: 2.945, lat: 48.8584};
+
+    reverseGeocode(geekdom, MAPBOX_TOKEN)
+        .then(function (result) {
+            console.log("Did we find geekdom? " + result);
+        })
+    reverseGeocode(burj, MAPBOX_TOKEN)
+        .then(function (result) {
+            console.log("Did we find the Burj Kalifa? " + result);
+        })
+    reverseGeocode(eiffel, MAPBOX_TOKEN)
+        .then(function (result) {
+            console.log("Did we find the Eiffel Tower? " + result);
+        })
+</script>
+</body>
+</html>
