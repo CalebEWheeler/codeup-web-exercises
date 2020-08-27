@@ -4,9 +4,15 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY2FsZWJ3aGVlbGVyIiwiYSI6ImNrZWN4MHF5eDAwMTAyc
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [-98.4936, 29.4241],
-    zoom: 8.5,
+    center: [-98.6, 29.6],
+    zoom: 11.25,
 });
+
+// // Add zoom and rotation controls to the map.
+// map.addControl(new mapboxgl.NavigationControl(5,15,20));
+// document.getElementById('zoom').addEventListener('click', function() {
+//     map.zoomTo(5, { duration: 9000 });
+
 //  <================================  Exercise Todo's  ===================================>
 // 1. Generate a Mapbox API Key using the steps from above
 
@@ -28,6 +34,11 @@ var map = new mapboxgl.Map({
 // wasabi.setPopup(wasabiPopup);
 
 // 7. Make sure the info window does not display until the marker has been clicked on.
+
+
+// 8. Refactor your code to display at least three of your favorite restaurants with information
+// about each. Create an array of objects with information about each restaurant to accomplish
+// this. Use a .forEach() loop rather than a for loop.
 map.on('load', function() {
     map.addSource('places', {
         'type': 'geojson',
@@ -38,19 +49,19 @@ map.on('load', function() {
                     'type': 'Feature',
                     'properties': {
                         'description':
-                            '<strong>Wasabi Sushi Bar</strong>',
+                            '<div style="text-align:center"><p style="font-size: 1.5em; margin-bottom: 0"><strong>Wasabi Sushi Bar</strong></p><br><a href="http://wasabisanantonio.com/">Wasabi San Antonio</a><br><p>This is my favorite restaurant because of the Whatever Roll.<br>The whatever roll is whatever the Sushi Chef thinks will be great.<br>It takes a great chef to consistently amaze me with complex flavors.</p><img style="border: .5rem solid #fff;width:90%;height:40%" src="../img/wasabi-bar.jpg"></div>',
                         'icon': 'restaurant'
                     },
                     'geometry': {
                         'type': 'Point',
-                        'coordinates': [-98.5857901, 29.5311642]
+                        'coordinates': [-98.5634622, 29.5339343]
                     }
                 },
                 {
                     'type': 'Feature',
                     'properties': {
                         'description':
-                            '<strong>P.F. Chang\'s</strong>',
+                            '<div style="text-align:center"><p style="font-size: 1.5em; margin-bottom: 0"><strong>P.F. Chang\'s La Cantera</strong></p><br><a href="https://www.pfchangs.com/locations/us/tx/san-antonio/15900-lacantera-pkwy/9982-la-cantera.html?utm_source=YextMain&utm_medium=Directory">P.F. Chang\'s La Cantera</a><p>My family enjoys asian cuisine and we have been coming to P.F. Chang\'s at the La Cantera location since I was in grade school.<br>The food here is not the best, but it is up there. I\'d say nostalgia and the atmosphere are my main draws.</p><img style="border: .5rem solid #fff;width:90%;height:40%" src="../img/pf-changs.jpeg"></div>',
                         'icon': 'restaurant'
                     },
                     'geometry': {
@@ -62,7 +73,7 @@ map.on('load', function() {
                     'type': 'Feature',
                     'properties': {
                         'description':
-                            '<strong>Longhorn Cafe</strong>',
+                            '<div style="text-align:center"><p style="font-size: 1.5em; margin-bottom: 0"><strong>Longhorn Cafe</strong></p><br><a href="https://www.thelonghorncafe.com/locations">Longhorn Cafe</a><p>Best mushroom swiss burger I have ever had!<br>I\'m a real fan of a good mushroom swiss and the Boerne location has the best. This location is also good, but just slightly not as good.</p><img style="border: .5rem solid #fff;width:90%;height:40%" src="../img/longhornCafe.jpeg"></div>',
                         'icon': 'restaurant'
                     },
                     'geometry': {
@@ -113,7 +124,3 @@ map.on('load', function() {
         map.getCanvas().style.cursor = '';
     });
 });
-
-// 8. Refactor your code to display at least three of your favorite restaurants with information
-// about each. Create an array of objects with information about each restaurant to accomplish
-// this. Use a .forEach() loop rather than a for loop.
