@@ -5,76 +5,14 @@ var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
     center: [-98.4936, 29.4241],
-    zoom: 9,
+    zoom: 8.5,
 });
-// <===========================  My functions for Geocode  =================================>
-
-/***
- * geocode is a method to search for coordinates based on a physical address and return
- * @param {string} search is the address to search for the geocoded coordinates
- * @param {string} token is your API token for MapBox
- * @returns {Promise} a promise containing the latitude and longitude as a two element array
- *
- * EXAMPLE:
- *
- *  geocode("San Antonio", API_TOKEN_HERE).then(function(results) {
- *      // do something with results
- *  })
- *
- */
-function geocode(search, token) {
-    var baseUrl = 'https://api.mapbox.com';
-    var endPoint = '/geocoding/v5/mapbox.places/';
-    return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + token)
-        .then(function(res) {
-            return res.json();
-            // to get all the data from the request, comment out the following three lines...
-        }).then(function(data) {
-            return data.features[0].center;
-        });
-}
-
-
-/***
- * reverseGeocode is a method to search for a physical address based on inputted coordinates
- * @param {object} coordinates is an object with properties "lat" and "lng" for latitude and longitude
- * @param {string} token is your API token for MapBox
- * @returns {Promise} a promise containing the string of the closest matching location to the coordinates provided
- *
- * EXAMPLE:
- *
- *  reverseGeocode({lat: 32.77, lng: -96.79}, API_TOKEN_HERE).then(function(results) {
- *      // do something with results
- *  })
- *
- */
-function reverseGeocode(coordinates, token) {
-    var baseUrl = 'https://api.mapbox.com';
-    var endPoint = '/geocoding/v5/mapbox.places/';
-    return fetch(baseUrl + endPoint + coordinates.lng + "," + coordinates.lat + '.json' + "?" + 'access_token=' + token)
-        .then(function(res) {
-            return res.json();
-        })
-        // to get all the data from the request, comment out the following three lines...
-        .then(function(data) {
-            return data.features[0].place_name;
-        });
-}
-
 //  <================================  Exercise Todo's  ===================================>
 // 1. Generate a Mapbox API Key using the steps from above
 
 // 2. Create a new file named mapbox_maps_api.html and add a map using the next steps.
 
 // 3. Generate a map that shows the city with your favorite restaurant using geocoding.
-
-
-
-//     geocode("9921 Frontage Rd, San Antonio, TX 78230", MAPBOX_TOKEN).then(function(result) {
-//         console.log("Geocoded result for Wasabi: " + result);
-//         map.setCenter(result);
-//         // response += + result;
-// })
 
 // 4. Redraw the map of the above location at zoom levels 5, 15, and 20. Do this by simply
 // changing the value of zoom level where the map properties are initially set and refresh
@@ -83,11 +21,98 @@ function reverseGeocode(coordinates, token) {
 
 // 5. Create a marker on your map of the exact location of your favorite restaurant set the
 // zoom to allow for best viewing distance.
-var wasabi = new mapboxgl.Marker().setLngLat([-98.5857901, 29.5311642]).addTo(map);
+// var wasabi = new mapboxgl.Marker().setLngLat([-98.5857901, 29.5311642]).addTo(map);
+
 // 6. Create a popup with the name of the restaurant.
-var wasabiPopup = new mapboxgl.Popup().setHTML("<p>Wasabi Sushi</p>").addTo(map)
-wasabi.setPopup(wasabiPopup);
+// var wasabiPopup = new mapboxgl.Popup().setHTML("<p>Wasabi Sushi</p>").addTo(map)
+// wasabi.setPopup(wasabiPopup);
+
 // 7. Make sure the info window does not display until the marker has been clicked on.
+map.on('load', function() {
+    map.addSource('places', {
+        'type': 'geojson',
+        'data': {
+            'type': 'FeatureCollection',
+            'features': [
+                {
+                    'type': 'Feature',
+                    'properties': {
+                        'description':
+                            '<strong>Wasabi Sushi Bar</strong>',
+                        'icon': 'restaurant'
+                    },
+                    'geometry': {
+                        'type': 'Point',
+                        'coordinates': [-98.5857901, 29.5311642]
+                    }
+                },
+                {
+                    'type': 'Feature',
+                    'properties': {
+                        'description':
+                            '<strong>P.F. Chang\'s</strong>',
+                        'icon': 'restaurant'
+                    },
+                    'geometry': {
+                        'type': 'Point',
+                        'coordinates': [-98.6179847,29.5930233]
+                    }
+                },
+                {
+                    'type': 'Feature',
+                    'properties': {
+                        'description':
+                            '<strong>Longhorn Cafe</strong>',
+                        'icon': 'restaurant'
+                    },
+                    'geometry': {
+                        'type': 'Point',
+                        'coordinates': [-98.6314518,29.66271]
+                    }
+                },
+            ]
+        }
+    });
+// Add a layer showing the places.
+    map.addLayer({
+        'id': 'places',
+        'type': 'symbol',
+        'source': 'places',
+        'layout': {
+            'icon-image': '{icon}-15',
+            'icon-allow-overlap': true
+        }
+    });
+
+// When a click event occurs on a feature in the places layer, open a popup at the
+// location of the feature, with description HTML from its properties.
+    map.on('click', 'places', function (e) {
+        var coordinates = e.features[0].geometry.coordinates.slice();
+        var description = e.features[0].properties.description;
+
+// Ensure that if the map is zoomed out such that multiple
+// copies of the feature are visible, the popup appears
+// over the copy being pointed to.
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+
+        new mapboxgl.Popup()
+            .setLngLat(coordinates)
+            .setHTML(description)
+            .addTo(map);
+    });
+
+// Change the cursor to a pointer when the mouse is over the places layer.
+    map.on('mouseenter', 'places', function () {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+// Change it back to a pointer when it leaves.
+    map.on('mouseleave', 'places', function () {
+        map.getCanvas().style.cursor = '';
+    });
+});
 
 // 8. Refactor your code to display at least three of your favorite restaurants with information
 // about each. Create an array of objects with information about each restaurant to accomplish
