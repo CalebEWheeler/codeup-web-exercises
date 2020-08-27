@@ -3,8 +3,9 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2FsZWJ3aGVlbGVyIiwiYSI6ImNrZWN4MHF5eDAwMTAycm16a3psZm4yeGYifQ.TPxlV9LK002eq2AvbiB1sg';
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/satellite-v9',
-
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [-98.4936, 29.4241],
+    zoom: 8,
 });
 // <===========================  My functions for Geocode  =================================>
 
@@ -66,6 +67,14 @@ function reverseGeocode(coordinates, token) {
 // 2. Create a new file named mapbox_maps_api.html and add a map using the next steps.
 
 // 3. Generate a map that shows the city with your favorite restaurant using geocoding.
+
+
+
+    geocode("9921 Frontage Rd, San Antonio, TX 78230", MAPBOX_TOKEN).then(function(result) {
+        console.log("Geocoded result for Wasabi: " + result);
+        map.setCenter(result);
+        // response += + result;
+})
 
 // 4. Redraw the map of the above location at zoom levels 5, 15, and 20. Do this by simply
 // changing the value of zoom level where the map properties are initially set and refresh
