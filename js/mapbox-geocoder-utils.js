@@ -5,7 +5,7 @@ var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
     center: [-98.4936, 29.4241],
-    zoom: 8,
+    zoom: 9,
 });
 // <===========================  My functions for Geocode  =================================>
 
@@ -70,11 +70,11 @@ function reverseGeocode(coordinates, token) {
 
 
 
-    geocode("9921 Frontage Rd, San Antonio, TX 78230", MAPBOX_TOKEN).then(function(result) {
-        console.log("Geocoded result for Wasabi: " + result);
-        map.setCenter(result);
-        // response += + result;
-})
+//     geocode("9921 Frontage Rd, San Antonio, TX 78230", MAPBOX_TOKEN).then(function(result) {
+//         console.log("Geocoded result for Wasabi: " + result);
+//         map.setCenter(result);
+//         // response += + result;
+// })
 
 // 4. Redraw the map of the above location at zoom levels 5, 15, and 20. Do this by simply
 // changing the value of zoom level where the map properties are initially set and refresh
@@ -83,9 +83,10 @@ function reverseGeocode(coordinates, token) {
 
 // 5. Create a marker on your map of the exact location of your favorite restaurant set the
 // zoom to allow for best viewing distance.
-
+var wasabi = new mapboxgl.Marker().setLngLat([-98.5857901, 29.5311642]).addTo(map);
 // 6. Create a popup with the name of the restaurant.
-
+var wasabiPopup = new mapboxgl.Popup().setHTML("<p>Wasabi Sushi</p>").addTo(map)
+wasabi.setPopup(wasabiPopup);
 // 7. Make sure the info window does not display until the marker has been clicked on.
 
 // 8. Refactor your code to display at least three of your favorite restaurants with information
