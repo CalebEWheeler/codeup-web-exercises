@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>First JQuery Exercise</title>
+</head>
+<body>
+<!--Exercise Content-->
+<h1>Learning JQuery</h1>
+<input id="input" type="text">
+<button id="btn">Click</button>
+<section id="output"></section>
+
+
+<!--JQuery Script-->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script>
+    (function () { //IIFE
+        "use strict";
+        $(document).ready(function () { //document loaded and ready
+            $("#output").val("Hello World");
+            alert('The DOM has finished loading!');
+        });
+    })();
+</script>
+</body>
+</html>

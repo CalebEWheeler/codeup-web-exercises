@@ -9,7 +9,8 @@ var map = new mapboxgl.Map({
 });
 
 // // Add zoom and rotation controls to the map.
-// map.addControl(new mapboxgl.NavigationControl(5,15,20));
+// map.addControl(new mapboxgl.NavigationControl());
+
 // document.getElementById('zoom').addEventListener('click', function() {
 //     map.zoomTo(5, { duration: 9000 });
 

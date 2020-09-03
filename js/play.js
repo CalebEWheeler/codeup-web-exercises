@@ -70,6 +70,26 @@
 // }
 // console.log(fizzBuzz());
 
+//js pushup 8/28
+function fizzBuzz(num) {
+    for (var i=1; i<=100; i++) {
+        if(i %3 === 0 && i %5 === 0) {
+            console.log("fizz" +"buzz")
+        }
+        else if (i %3 === 0) {
+            var fizz = console.log("fizz")
+        }
+        else if( i %5 === 0) {
+            var buzz = console.log("buzz")
+        }
+        else if (i %3 !== 0 && i %5 !== 0) {
+            console.log(i);
+        }
+
+    }
+}
+console.log(fizzBuzz());
+
 // 'use strict';
 // // this code will produce a console log every second
 // // when count >= max, the interval is cancelled, and the logging will stop
