@@ -6,11 +6,24 @@
 </head>
 <body>
 <!--Exercise Content-->
-<h1>Learning JQuery</h1>
-<input id="input" type="text">
-<button id="btn">Click</button>
-<section id="output"></section>
-
+<!--<h1 id="codeup">Hello Codeup</h1>-->
+<!--<p id="p1">JQuery is cool.</p>-->
+<!--<input id="input" type="text">-->
+<!--<button id="btn">Click</button>-->
+<!--<section id="output"></section>-->
+<h3>Example Page</h3>
+<div class="important">
+    <h3>NOTICE</h3>
+    <p>This is an important message!</p>
+</div>
+<div class="not-important">
+    <h2>Lorem Ipsum</h2>
+    <p>
+        Lorem ipsum dolor sit amet, incididunt ut <span class="important">labore et dolore magna aliqua.</span>, quis ut
+        aliquip ex ea commodo.
+    </p>
+</div>
+<p class="important">This is also very important.</p>
 
 <!--JQuery Script-->
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"
@@ -20,8 +33,21 @@
         "use strict";
         $(document).ready(function () { //document loaded and ready
             $("#output").val("Hello World");
-            alert('The DOM has finished loading!');
+            // alert('The DOM has finished loading!');
         });
+        // $('#p1').html('JQuery Rocks!')
+
+        //targeting a class and changing the background color
+        // $('.important').css('background-color', 'yellow');
+        // $('.not-important').css('background-color', 'green');
+
+        //targeting an element and changing the font-size
+        // $('h3').css('color', 'red');
+
+        //targeting multiple selectors
+        // $('.important, p').css('background-color', 'red');
+        // $('h1, h3').css('background-color', 'blue')
+        // $('*').css('border', '1px dashed red')
     })();
 </script>
 </body>
