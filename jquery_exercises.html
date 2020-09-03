@@ -11,20 +11,30 @@
 <!--<input id="input" type="text">-->
 <!--<button id="btn">Click</button>-->
 <!--<section id="output"></section>-->
-<h3>Example Page</h3>
+<h1 id="codeup">Example Page</h1>
 <div class="important">
-    <h3>NOTICE</h3>
+    <h3 class="codeup">NOTICE</h3>
     <p>This is an important message!</p>
 </div>
 <div class="not-important">
     <h2>Lorem Ipsum</h2>
-    <p>
+    <p id="p2" class="codeup">
         Lorem ipsum dolor sit amet, incididunt ut <span class="important">labore et dolore magna aliqua.</span>, quis ut
         aliquip ex ea commodo.
     </p>
 </div>
 <p class="important">This is also very important.</p>
-
+<div id="ul-container" class="ul-container-style">
+<ul id="ul-1" class="ul-1">
+    <li>One</li>
+    <li id="li-1" class="">Two</li>
+    <li>Three</li>
+</ul>
+</div>
+<p>Please type something into this form:</p>
+<form>
+    <input type="text" id="textfield" name="textfield" placeholder="Type Here"/>
+</form>
 <!--JQuery Script-->
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
@@ -35,6 +45,7 @@
             $("#output").val("Hello World");
             // alert('The DOM has finished loading!');
         });
+//<============================START OF SELECTORS LECTURE============================>
         // $('#p1').html('JQuery Rocks!')
 
         //targeting a class and changing the background color
@@ -48,6 +59,37 @@
         // $('.important, p').css('background-color', 'red');
         // $('h1, h3').css('background-color', 'blue')
         // $('*').css('border', '1px dashed red')
+//<============================END OF SELECTORS LECTURE===============================>
+
+
+
+//<============================START OF SELECTORS EXERCISE============================>
+//                  <==================ID SELECTORS===================>
+
+        var contents = $('#li-1').html();
+        // contents = $('#ul-1').html();
+        // by targeting two items with the same attribute, jQuery will return the first item encountered
+        contents = $('#li-1').html();
+        alert(contents)
+
+//                 <==================CLASS SELECTORS===================>
+
+        $('.codeup').css('border', '1px solid red')
+        // Giving an element the id="codeup" will not apply the border, because
+        // the border is applied to the class="codeup"
+
+//                 <==================ELEMENT SELECTORS===================>
+
+        $('li').css('font-size', '20px')
+        var h1Alert = $('h1').html()
+        // $('p')
+        // $('li')
+        alert(h1Alert)
+
+//                 <==================MULTIPLE SELECTORS===================>
+
+        $('h1, p, li').css('background-color', '#00d6ff')
+
     })();
 </script>
 </body>
