@@ -2,139 +2,48 @@
 <html>
 <head>
     <title>Konami Code</title>
+
 </head>
 <body class="body">
-<h1>Konami Code</h1>
+
+<div><img class="hearts" style="margin-top:1em; margin-left: 2em; width:3%" src="img/8bit-heart2.png" alt="heart"></div>
 
 <script src="js/jquery.js"></script>
 <script>
     "use strict";
-    var code = [];
+    $('body').css({
+        'background-image': 'url("img/shovel-knight.gif")', 'height': '760px',
+        'width': '1000px', 'background-repeat': 'no-repeat'
+    })
 
-    $('body').css('background-image', 'img/wasabi-bar.jpg')
+    var code = [];
     $(document).keyup(function (event) {
         var konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
         code.push(event.keyCode)
         console.log(code)
-        for (var i = 0; i <= code.length-1; i++)
+        for (var i = 0; i <= code.length - 1; i++)
             if (code[i] === konamiCode[i]) {
                 if (code[i] === konamiCode[10]) {
-                    alert('You have 30 lives!')
-                    code = []
-                    break
+                    alert("You have gained 7 hearts!")
+                    var displayHearts = 6;
+                    var interval = 750;
+                    var intervalID = setInterval(function updateTimer() {
+                        if (displayHearts != 0) {
+                            $('div').append('<img class="hearts" style="margin-top:1em; margin-left: .25em; width:3%" src="img/8bit-heart2.png" alt="heart">');
+                        } else if (displayHearts == 0) {
+                            var audio = new Audio()
+                            audio.src = 'audio/achievement1.wav'
+                            audio.play()
+                            code = []
+                            clearTimeout(intervalID)
+                        }
+                        displayHearts--;
+                    }, interval)
                 }
-            }
-            else {
-                // location.reload()
+            } else {
                 code = []
             }
-    //        Think of a way to run location.reload() when you hit the "R" key
     });
-
-
-
-    //<============================START OF MOUSE EVENTS LECTURE============================>
-
-    // Expanding further on the last two points, the following code blocks are
-    // functionally equivalent:
-
-    // var ele = document.getElementById('my-element');
-    // ele.addEventListener('click', function(e) {
-    //     alert('My element was clicked!');
-    // });
-    //
-    // function clickHandler(e) {
-    //     alert('My element was clicked!');
-    // }
-    // var ele = document.getElementById('my-element');
-    // ele.addEventListener('click', clickHandler);
-
-    // JQuery and .click() syntax
-    // $(selector).click(handler)
-
-    // target an h1 with the id='codeup' that will alert when clicked
-    // $('#codeup').click(function() {
-    //     alert('h1 with id "codeup" was clicked');
-    // });
-
-    // JQuery and .dblclick() syntax
-    // $(selector).dblclick(handler)
-
-    // target an h1 with the id='codeup' that will alert when double clicked
-    // $('#codeup').dblclick(function() {
-    //     alert('h1 with id "codeup" was double clicked');
-    // });
-
-    // JQuery and .hover() syntax
-    // $(selector).hover(handlerIn, handlerOut) same as attaching both handlers separately
-    // -separately-
-    // $(selector).mouseenter(handlerIn)
-    // $(selector).mouseenter(handlerOut);
-
-    // target the id='codeup' and apply a hover effect
-    // $('#codeup').hover(function() {
-    //     $(this).css('background-color', '#FF0');
-    // },
-    // function() {
-    //     $(this).css('background-color', '#FFF');
-    // });
-
-    //<============================END OF MOUSE EVENTS LECTURE============================>
-
-    //<============================START OF MOUSE EVENTS EXERCISE============================>
-
-    // $('h1').click(function() {
-    //     $(this).css('background-color', 'red')
-    // })
-    // $('p').dblclick(function() {
-    //     $(this).css('font-size', '18px')
-    // })
-    // $('li').hover(function() {
-    //     $(this).css('color', 'red')
-    // },
-    // function() {
-    //     $(this).css('color', 'black')
-    // });
-    //<============================END OF MOUSE EVENTS EXERCISE============================>
-
-    //<============================START OF KEYBOARD EVENTS LECTURE============================>
-
-    // JQuery and .keydown() syntax
-    // $(selector).keydown(handler)
-    // can use the .keydown() handler the same as we use click
-
-    // target the id='textfield' and alert when a key is pressed
-    // $('#textfield').keydown(function() {
-    //     alert('A key was pushed down!');
-    // });
-
-    // JQuery and .keypress() syntax
-    // same as .keydown() with the exception that (shift,control,escape,etc) will trigger
-    // .keydown() event when pressed
-
-    // JQuery and .keyup() syntax
-    // same as .keydown() except event will occur when key is released
-
-    // target the id='textfield' and alert when a key is released
-    // $('#textfield').keyup(function() {
-    //     alert('a key was released!');
-    // });
-
-    // JQuery and .on() and .off() syntax
-    // .on('keydown', function() {});
-    // allows event listeners to run
-    // $('.clickable').off('click');
-    // targets class='clickable' and removes event listeners when clicked on
-    // $('p').off(); removes event listeners from all paragraph tags
-
-
-    //<============================END OF KEYBOARD EVENTS LECTURE============================>
-
-    //<============================START OF KEYBOARD EVENTS EXERCISE============================>
-
-    //<============================END OF KEYBOARD EVENTS EXERCISE============================>
-
-
 </script>
 </body>
 </html>
