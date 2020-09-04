@@ -3,13 +3,14 @@
 <head>
     <title>Konami Code</title>
 </head>
-<body>
+<body class="body">
 <h1>Konami Code</h1>
 
 <script src="js/jquery.js"></script>
 <script>
     "use strict";
-    const code = [];
+    var code = [];
+    $('body').css('background-image', 'img/wasabi-bar.jpg')
     $(document).keyup(function (event) {
         var konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
         code.push(event.keyCode)
@@ -18,13 +19,18 @@
             if (code[i] === konamiCode[i]) {
                 if (code[i] === konamiCode[10]) {
                     alert('You have 30 lives!')
+                    code = []
                     break
                 }
             }
             else {
-                location.reload()
+                // location.reload()
+                code = []
             }
+
     });
+
+
 
     //<============================START OF MOUSE EVENTS LECTURE============================>
 
