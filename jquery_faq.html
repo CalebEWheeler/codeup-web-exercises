@@ -121,6 +121,11 @@
     </li>
 </ul>
 
+<div></div>
+<div></div>
+<div></div>
+
+<button id="btn" type="button">Click Me</button>
 <script src="js/jquery.js"></script>
 <script>
     "use strict";
@@ -130,6 +135,15 @@
     })
     $('dt').click(function () {
         $(this).toggleClass('highlight')
+    })
+    $('#btn').click(function () {
+        $('ul li:nth-child(4)').toggleClass('highlight')
+    })
+    $('h3').click(function () {
+        $('li').css('font-weight', 'bold')
+    })
+    $('li').click(function () {
+        $('li:nth-child(1)').css('color', 'blue')
     })
 </script>
 </body>
