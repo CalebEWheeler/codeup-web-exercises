@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Example jQuery Page</title>
+    <style>
+        .invisible {
+            visibility: hidden;
+        }
+        .highlight {
+            background-color: yellow;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+<dl>
+    <dt>Fact 1</dt>
+    <dd>The Great Smoky Mountains National Park (pictured above) is the most visited national park in the United States – attracting more than 11 million visitors in 2018.</dd>
+
+    <dt>Fact 2</dt>
+    <dd>An estimated 5.9 million people visit the Grand Canyon each year, making it the second most visited national park</dd>
+
+    <dt>Fact 3</dt>
+    <dd>Yellowstone was the first national park in the United States, created in 1872 and signed into law by President Ulysses S. Grant.</dd>
+
+    <dt>Fact 4</dt>
+    <dd>Yellowstone National Park is home to more than 500 active geysers (more than half the world’s geysers). </dd>
+
+    <dt>Fact 5</dt>
+    <dd>At 13.2 million acres, Alaska’s Wrangell-St. Elias National Park & Preserve is the largest national park in the United States.</dd>
+
+    <dt>Fact 6</dt>
+    <dd>The smallest national park, if we’re talking natural, is Hot Springs National Park in Arkansas coming in at about 5,500 acres.</dd>
+
+    <dt>Fact 7</dt>
+    <dd>California has the most national parks with nine, followed by Alaska with eight. </dd>
+
+    <dt>Fact 8</dt>
+    <dd>Death Valley National Park has the distinction of being the hottest, driest and lowest place in the United States.</dd>
+
+    <dt>Fact 9</dt>
+    <dd>The southwest can be sweltering in July and August, but at an average elevation of 8,500 feet Utah’s Bryce Canyon National Park stays relatively cool with temps in the 80’s during the day and 50’s in the evenings.</dd>
+
+    <dt>Fact 10</dt>
+    <dd>For breathtaking landscapes and great weather, it’s hard to beat Glacier National Park in Montana.</dd>
+</dl>
+
+<script src="js/jquery.js"></script>
+<script>
+    "use strict";
+
+    $('dd').click(function () {
+        $(this).toggleClass('invisible')
+    })
+    $('dt').click(function () {
+        $(this).toggleClass('highlight')
+    })
+</script>
+</body>
+</html>
