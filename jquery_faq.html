@@ -11,9 +11,41 @@
             background-color: yellow;
             color: black;
         }
+        .pictures {
+            display: flex;
+            justify-content: space-around;
+        }
+        .position {
+            display: flex;
+            flex-direction: column;
+        }
+        .frame {
+            height: 200px;
+            border: 5px solid brown;
+        }
+        .btn {
+            align-self:center;
+            margin-top: 1em;
+            width: 100px;
+            background-color: #847477;
+        }
     </style>
 </head>
 <body>
+<div class="pictures">
+    <div class="position">
+        <img class="frame" src="img/smoky-mountains.jpg" alt="Smoky Mountains">
+        <button class="btn" type="button">Swap</button>
+    </div>
+    <div class="position">
+        <img class="frame" src="img/bryce-canyon.jpeg" alt="Bryce Canyon">
+        <button class="btn" type="button">Swap</button>
+    </div>
+    <div class="position">
+        <img class="frame" src="img/carlsbad-caverns.jpg" alt="Carlsbad Caverns">
+        <button class="btn" type="button">Swap</button>
+    </div>
+</div>
 <a href="#">Answers</a>
 <dl>
     <dt>Who is the director of the National Park Service?</dt>
@@ -109,7 +141,7 @@
     </li>
 </ul>
 
-<h3>Carslbad Caverns National Park</h3>
+<h3>Carlsbad Caverns National Park</h3>
 <ul>
     <li>At present there are 117 known caves in the park, and more will be discovered. The cave known as Carlsbad Cavern is only one of these.
     </li>
@@ -121,12 +153,13 @@
     </li>
 </ul>
 
-<div>
-    <h1><span>[x]  </span>Would you like to sign up for our newsletter?</h1>
-</div>
-<h2>Would you like to register?</h2>
-
 <button id="btn" type="button">Click Me</button>
+
+<h2>Would you like to register?</h2>
+<div>
+        <h1><span>[x]  </span>Would you like to sign up for our newsletter?</h1>
+</div>
+
 <script src="js/jquery.js"></script>
 <script>
     "use strict";
@@ -144,12 +177,13 @@
 
         $('#btn').click(function () {
             $('ul li:nth-child(4)').toggleClass('highlight')
-            $('h2').fadeToggle(1000)
         })
 
         $('ul').hide()
         $('h3').click(function() {
-            $('ul').slideToggle()
+            $('ul').slideToggle(500)
+            //Another way to do this
+            //$(this).next('ul").slideToggle(500)
             $('li').css('font-weight', 'bold')
         })
 
@@ -158,7 +192,19 @@
         })
 
         $('span').click(function () {
-            $('div h1').toggleClass('invisible')
+            $(this).parent().parent().addClass('invisible')
+        })
+
+        $('.btn').first().click(function() {
+        //  should swap pic1 with pic2
+        //     $('.position:nth-child(1)').replaceWith('.position:nth-child(2)')
+            $('img').first().hide()
+        })
+        $('btn2').click(function() {
+        //  should swap pic2 randomly
+        })
+        $('btn3').click(function() {
+        //  should swap pic3 with pic2
         })
     })
 
