@@ -1,13 +1,13 @@
 [
     {
-        "title": "Hammer",
-        "quantity": 25,
+        "title": "EATX Case",
+        "quantity": 5,
         "categories": [
             "tool"
         ],
         "price": 20
     }, {
-        "title": "Drill",
+        "title": "ATX Case",
         "quantity": 5,
         "categories": [
             "tool",
@@ -15,7 +15,7 @@
         ],
         "price": 100
     }, {
-        "title": "Mower",
+        "title": "Micro-ATX Case",
         "quantity": 5,
         "categories": [
             "tool",
@@ -24,11 +24,19 @@
         ],
         "price": 200
     }, {
-        "title": "Screwdrivers",
+        "title": "Mini-ITX Case",
         "quantity": 25,
         "categories": [
             "tool"
         ],
         "price": 10
-    }
+    }, {
+    "title": "",
+    "quantity": 30,
+    "categories": [
+        "tool"
+    ],
+    "price": 5.99
+}
 ]
+
