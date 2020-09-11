@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Map</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet'/>
+
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="container" ><p class="heading-1" id="location"></p></div>
+<div class="row" id="forecastDays"></div>
+<div class="container-fluid">
+    <div class="m-auto" id='map' style='width: 800px; height:400px'></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="js/keys.js"></script>
+<script>
+    $().ready(function () {
+
+        $.get("http://api.openweathermap.org/data/2.5/forecast?APPID=" + OPEN_WEATHER_APPID + "&q=Pipe+Creek,+US", {
+            APPID: OPEN_WEATHER_APPID,
+            lat: 29.7231,
+            lon: -98.9347,
+            units: "imperial"
+        }).done(function (data) {
+            console.log(data)
+            $('#location').html(data.city['name'])
+
+            for(var i = 0; i < data.list.length; i++){
+                if (data.list[i].dt_txt.includes('12:00:00')){
+                    $('#forecastDays').append(
+                        '<div class="col" ><img src="http://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png" alt="weatherIMG"><p>' + data.list[i].weather[0].description  +'</p>' +
+                        '<p>'  + 'Humidity: ' + data.list[i].main.humidity  +'%</p>' +
+                        '<p>'  + 'Wind Speed: ' + data.list[i].wind.speed +' MPH</p>' +
+                        '<p>' + 'Temp: ' + data.list[i].main.temp  +'°</p>' +
+                        '<p>' + 'Low: ' + data.list[i].main.temp_min + '°</p>' +
+                        '<p>' + 'High: ' + data.list[i].main.temp_max + '°</p></div>'
+                    )
+                }
+            }
+        });
+    });
+</script>
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiY2FsZWJ3aGVlbGVyIiwiYSI6ImNrZWN4MHF5eDAwMTAycm16a3psZm4yeGYifQ.TPxlV9LK002eq2AvbiB1sg';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [-98.9347, 29.7231],
+        zoom: 10.8,
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</body>
+</html>
