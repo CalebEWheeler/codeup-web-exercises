@@ -42,21 +42,35 @@
 
     });
 
-    var marker = new mapboxgl.Marker({
-        draggable: true
-    })
-        .setLngLat([longitude, latitude])
-        .addTo(map);
+    //OG MARKER THAT WORKS
+    // var marker = new mapboxgl.Marker({
+    //     draggable: true
+    // })
+    //     .setLngLat([longitude, latitude])
+    //     .addTo(map);
 
-    var geocoder = new MapboxGeocoder({
+    //CRAZY FRANKENSTEINING
+    var marker = new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
         marker: {
             draggable: true
-        },
+    },
         mapboxgl: mapboxgl
-    });
+    })
+        // .setLngLat([longitude, latitude])
+        // .addTo(map);
 
-    map.addControl(geocoder);
+    //OG GEOCODER COOLNESS
+    // var geocoder = new MapboxGeocoder({
+    //     accessToken: mapboxgl.accessToken,
+    //     marker: {
+    //         center: [longitude, latitude],
+    //         draggable: true
+    //     },
+    //     mapboxgl: mapboxgl
+    // });
+    //
+    map.addControl(marker);
         // new MapboxGeocoder({
         //     accessToken: mapboxgl.accessToken,
         //     mapboxgl: mapboxgl,
