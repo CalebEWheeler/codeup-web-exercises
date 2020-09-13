@@ -6,22 +6,106 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet'/>
+    <script src="https://kit.fontawesome.com/3fe6d7fc85.js" crossorigin="anonymous"></script>
 
     <style>
+        p {
+            font-size: .75rem;
+            text-align: center;
+        }
+        li {
+            list-style: none;
+        }
 
+        #forecastCard {
+            background-color: #cddeff;
+        }
+
+        #background {
+            background-size: cover;
+        }
+        #forecastCard {
+            width: 15rem;
+        }
     </style>
 </head>
 <body>
-<div class="container"><p class="heading-1" id="location"></p></div>
-<!--<input id="zipcode" type="text">-->
-<!--<button id="submit" type="button">Search</button>-->
-<div class="row" id="forecastDays"></div>
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand">
+        <div class="container"><p class="h2" id="location"></p></div>
+    </a>
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+</nav>
 
-<div class="container-fluid">
-    <div class="m-auto" id='map' style='width: 800px; height:400px'>
-        <div id="coordinates"></div>
+<div id="background" class="container-fluid" style="background-image: url('img/weather1.jpeg')">
+<div class=”row">
+    <div class="col flex-nowrap">
+        <div class="col-3 mx-0 p-0" id="forecastDays"></div>
+        <div class="col-9">
+            <div class="card my-2" id='map' style="width: 80%; height: 600px;">
+                <div id="coordinates"></div>
+            </div>
+        </div>
     </div>
 </div>
+</div>
+
+<footer>
+    <div class="row" id="topFooter">
+        <div class="col-3">
+            <img src="" alt="">
+        </div>
+        <div class="col-3">
+            <h4>Address</h4>
+            <ul>
+                <li>1234 Street Name</li>
+                <li>City. AA 999999</li>
+            </ul>
+        </div>
+        <div class="col-3">
+            <h4>Contacts</h4>
+            <ul>
+                <li>Email: support@mobirise.com</li>
+                <li>Phone: +1(0) 000 0000 001</li>
+                <li>Fax: +1(0) 000 0000 002</li>
+            </ul>
+        </div>
+        <div class="col-3">
+            <h4>Download Links</h4>
+            <ul>
+                <a href="">
+                    <li>Android</li>
+                </a>
+                <a href="">
+                    <li>Windows</li>
+                </a>
+                <a href="">
+                    <li>Mac</li>
+                </a>
+                <a href="">
+                    <li>IOS</li>
+                </a>
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <div class="row" id="bottomFooter">
+        <div class="col-6">
+            <p>©Copyright 2020 Footer creations - All Rights Reserved</p>
+        </div>
+        <div class="col-6" id="social-media-links">
+            <a href=""><i class="fab fa-twitter"></i></a>
+            <a href=""><i class="fab fa-facebook"></i></a>
+            <a href=""><i class="fab fa-google-plus-g"></i></a>
+            <a href=""><i class="fab fa-youtube"></i></a>
+            <a href=""><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+
+</footer>
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
@@ -32,8 +116,9 @@
     var longitude = -98.9347;
     var latitude = 29.7231;
 
+
     mapboxgl.accessToken = MAPBOX_TOKEN;
-    var coordinates = document.getElementById('coordinates');
+    // var coordinates = document.getElementById('coordinates');
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
@@ -42,69 +127,64 @@
 
     });
 
-    //OG MARKER THAT WORKS
-    // var marker = new mapboxgl.Marker({
-    //     draggable: true
-    // })
-    //     .setLngLat([longitude, latitude])
-    //     .addTo(map);
-
-    //CRAZY FRANKENSTEINING
-    var marker = new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        marker: {
-            draggable: true
-    },
-        mapboxgl: mapboxgl
+    // OG MARKER THAT WORKS
+    var marker = new mapboxgl.Marker({
+        draggable: true
     })
-        // .setLngLat([longitude, latitude])
-        // .addTo(map);
+        .setLngLat([longitude, latitude])
+        .addTo(map);
 
-    //OG GEOCODER COOLNESS
-    // var geocoder = new MapboxGeocoder({
-    //     accessToken: mapboxgl.accessToken,
-    //     marker: {
-    //         center: [longitude, latitude],
-    //         draggable: true
-    //     },
-    //     mapboxgl: mapboxgl
-    // });
+
+    //OG GEOCODER
+    var geocoder = new MapboxGeocoder({
+        accessToken: MAPBOX_TOKEN,
+        marker: {
+            center: [longitude, latitude],
+            draggable: true
+        },
+        mapboxgl: mapboxgl
+    });
     //
-    map.addControl(marker);
-        // new MapboxGeocoder({
-        //     accessToken: mapboxgl.accessToken,
-        //     mapboxgl: mapboxgl,
-        //     marker: {
-        //         anchor: 'center',
-        //         draggable: true
-        //     }
-        //
-        // }),
+    map.addControl(geocoder);
 
-    // );
-    // MapboxGeocoder.marker.setLngLat(longitude, latitude)
 
+    // var lngLat = geocoder.mapMarker.getLngLat()
+    // longitude = geocoder.mapMarker.getLngLat().lng;
+    // latitude = geocoder.mapMarker.getLngLat().lat;
 
     var forecastDays = ''
     var renderForecast = function (data) {
         if (forecastDays === '') {
             for (var i = 0; i < data.list.length; i++) {
-                if (data.list[i].dt_txt.includes('12:00:00')) {
-                    forecastDays += '<div class="col" ><img src="http://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png" alt="weatherIMG"><p>' + data.list[i].weather[0].description + '</p>' +
-                        '<p>' + 'Humidity: ' + data.list[i].main.humidity + '%</p>' +
-                        '<p>' + 'Wind Speed: ' + data.list[i].wind.speed + ' MPH</p>' +
-                        '<p>' + 'Temp: ' + data.list[i].main.temp + '°</p>' +
-                        '<p>' + 'Low: ' + data.list[i].main.temp_min + '°</p>' +
-                        '<p>' + 'High: ' + data.list[i].main.temp_max + '°</p></div>'
+                if (data.list[i].dt_txt.includes('00:00:00')) {
+                    forecastDays += '<div id="forecastCard" class="card-header mx-1 font-weight-bold" >' +
+                                        '<div>' +
+                                            '<div>' +
+                                                '<p class="text-center">' + 'Temp: ' + data.list[i].main.temp + '°</p>' +
+                                            '</div>' +
+                                            '<div class="row flex-wrap small">' +
+                                            '<p class="col-6">' + 'Low: ' + data.list[i].main.temp_min + '°</p>' +
+                                                '<p class="col-6">' + 'High: ' + data.list[i].main.temp_max + '°</p>' +
+                                            '</div>' +
+                                        '</div>' +
+                                        '<div class="d-flex flex-column">' +
+                                            '<p>' + data.list[i].weather[0].description + '</p>' +
+                                            '<img class="m-auto align-items-center" src="http://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png" alt="weatherIMG">' +
+                                        '</div>' +
+                                        '<div class="row flex-wrap justify-content-around small">' +
+                                            '<p>' + 'Humidity: ' + data.list[i].main.humidity + '%</p>' +
+                                            '<p>' + 'Wind: ' + data.list[i].wind.speed + ' MPH</p>' +
+                                        '</div>' +
+                                    '</div>'
                 }
             }
             $('#forecastDays').append(forecastDays)
         } else {
             $('#forecastDays').replaceWith('<div class="row" id="forecastDays"></div>')
-                forecastDays = ''
+            forecastDays = ''
             for (var j = 0; j < data.list.length; j++) {
-                if (data.list[j].dt_txt.includes('12:00:00')) {
-                    forecastDays += '<div class="col" ><img src="http://openweathermap.org/img/w/' + data.list[j].weather[0].icon + '.png" alt="weatherIMG"><p>' + data.list[j].weather[0].description + '</p>' +
+                if (data.list[j].dt_txt.includes('00:00:00')) {
+                    forecastDays += '<div class="col card" ><img src="http://openweathermap.org/img/w/' + data.list[j].weather[0].icon + '.png" alt="weatherIMG"><p>' + data.list[j].weather[0].description + '</p>' +
                         '<p>' + 'Humidity: ' + data.list[j].main.humidity + '%</p>' +
                         '<p>' + 'Wind Speed: ' + data.list[j].wind.speed + ' MPH</p>' +
                         '<p>' + 'Temp: ' + data.list[j].main.temp + '°</p>' +
@@ -112,12 +192,12 @@
                         '<p>' + 'High: ' + data.list[j].main.temp_max + '°</p></div>'
                 }
             }
-            console.log(forecastDays)
+            // console.log(forecastDays)
             $('#forecastDays').append(forecastDays)
         }
     }
 
-    //default API()
+    //default API() on page load
     $.get("http://api.openweathermap.org/data/2.5/forecast", {
         APPID: OPEN_WEATHER_APPID,
         lat: latitude,
@@ -128,11 +208,10 @@
         renderForecast(data)
     });
 
+    // ALLOWS ME TO GET COORDINATES OF OG MARKER
     function onDragEnd() {
         var lngLat = marker.getLngLat();
-        coordinates.style.display = 'block';
-        coordinates.innerHTML =
-            'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
+
         longitude = lngLat.lng;
         latitude = lngLat.lat;
 
@@ -146,8 +225,28 @@
             renderForecast(data)
         });
     }
+
     marker.on('dragend', onDragEnd);
+
+
+    //make an event listener that will run when a query is made in the geocoder
+    //target the geocoder lat and long?
     //how to target new marker ==> geocoder.mapMarker._lngLat
+    // $('#map').click(function() {
+    //     longitude = geocoder.mapMarker.getLngLat().lng;
+    //     latitude = geocoder.mapMarker.getLngLat().lat;
+    //
+    //     $.get("http://api.openweathermap.org/data/2.5/forecast", {
+    //         APPID: OPEN_WEATHER_APPID,
+    //         lat: latitude,
+    //         lon: longitude,
+    //         units: "imperial"
+    //     }).done(function (data) {
+    //         $('#location').html(data.city['name'])
+    //         renderForecast(data)
+    //     });
+    // })
+
 
 </script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
