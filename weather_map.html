@@ -9,24 +9,26 @@
     <script src="https://kit.fontawesome.com/3fe6d7fc85.js" crossorigin="anonymous"></script>
 
     <style>
-        p {
-            font-size: .75rem;
-            text-align: center;
-        }
-        li {
-            list-style: none;
-        }
+        /*p {*/
+        /*    font-size: .75rem;*/
+        /*    text-align: center;*/
+        /*}*/
 
-        #forecastCard {
-            background-color: #cddeff;
-        }
+        /*li {*/
+        /*    list-style: none;*/
+        /*}*/
 
-        #background {
-            background-size: cover;
-        }
-        #forecastCard {
-            width: 15rem;
-        }
+        /*#forecastCard {*/
+        /*    background-color: #cddeff;*/
+        /*}*/
+
+        /*#background {*/
+        /*    background-size: cover;*/
+        /*}*/
+
+        /*#forecastCard {*/
+        /*    width: 15rem;*/
+        /*}*/
     </style>
 </head>
 <body>
@@ -40,18 +42,12 @@
     </form>
 </nav>
 
-<div id="background" class="container-fluid" style="background-image: url('img/weather1.jpeg')">
-<div class=”row">
-    <div class="col flex-nowrap">
-        <div class="col-3 mx-0 p-0" id="forecastDays"></div>
-        <div class="col-9">
-            <div class="card my-2" id='map' style="width: 80%; height: 600px;">
-                <div id="coordinates"></div>
-            </div>
-        </div>
+<div class="row" id="forecastDays"></div>
+    <div id='map' style="width: 600px; height: 600px;">
+<!--        <div id="forecastDays"></div>-->
     </div>
-</div>
-</div>
+
+
 
 <footer>
     <div class="row" id="topFooter">
@@ -115,7 +111,12 @@
 <script>
     var longitude = -98.9347;
     var latitude = 29.7231;
-
+    //refactor weather info by using ONE CALL url: https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&
+    // exclude={part}&appid={YOUR API KEY}
+    // EXAMPLE:https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&
+    //     exclude=hourly,daily&appid={YOUR API KEY}
+    //GET RID OF GEOCODER
+    //ADD INPUT THAT WILL UPDATE WEATHER BASED ON LOCATION TYPED IN
 
     mapboxgl.accessToken = MAPBOX_TOKEN;
     // var coordinates = document.getElementById('coordinates');
@@ -157,25 +158,18 @@
         if (forecastDays === '') {
             for (var i = 0; i < data.list.length; i++) {
                 if (data.list[i].dt_txt.includes('00:00:00')) {
-                    forecastDays += '<div id="forecastCard" class="card-header mx-1 font-weight-bold" >' +
-                                        '<div>' +
-                                            '<div>' +
-                                                '<p class="text-center">' + 'Temp: ' + data.list[i].main.temp + '°</p>' +
-                                            '</div>' +
-                                            '<div class="row flex-wrap small">' +
-                                            '<p class="col-6">' + 'Low: ' + data.list[i].main.temp_min + '°</p>' +
-                                                '<p class="col-6">' + 'High: ' + data.list[i].main.temp_max + '°</p>' +
-                                            '</div>' +
-                                        '</div>' +
-                                        '<div class="d-flex flex-column">' +
-                                            '<p>' + data.list[i].weather[0].description + '</p>' +
-                                            '<img class="m-auto align-items-center" src="http://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png" alt="weatherIMG">' +
-                                        '</div>' +
-                                        '<div class="row flex-wrap justify-content-around small">' +
-                                            '<p>' + 'Humidity: ' + data.list[i].main.humidity + '%</p>' +
-                                            '<p>' + 'Wind: ' + data.list[i].wind.speed + ' MPH</p>' +
-                                        '</div>' +
-                                    '</div>'
+                    // forecastDays += '<div class="col card"><img src="http://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png" alt="weatherIMG"><p>' + data.list[i].weather[0].description + '</p>' +
+                    //     '<p>' + 'Temp: ' + data.list[i].main.temp + '°</p>' +
+                    //     '<p>' + 'Low: ' + data.list[i].main.temp_min + '°</p>' +
+                    //     '<p>' + 'High: ' + data.list[i].main.temp_max + '°</p>' +
+                    //     '<p>' + 'Humidity: ' + data.list[i].main.humidity + '%</p>' +
+                    //     '<p>' + 'Wind: ' + data.list[i].wind.speed + ' MPH</p></div>'
+                    forecastDays += '<div class="col card" ><img src="http://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png" alt="weatherIMG"><p>' + data.list[i].weather[0].description + '</p>' +
+                        '<p>' + 'Humidity: ' + data.list[i].main.humidity + '%</p>' +
+                        '<p>' + 'Wind Speed: ' + data.list[i].wind.speed + ' MPH</p>' +
+                        '<p>' + 'Temp: ' + data.list[i].main.temp + '°</p>' +
+                        '<p>' + 'Low: ' + data.list[i].main.temp_min + '°</p>' +
+                        '<p>' + 'High: ' + data.list[i].main.temp_max + '°</p></div>'
                 }
             }
             $('#forecastDays').append(forecastDays)
