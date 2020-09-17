@@ -57,7 +57,7 @@ let names = [];
 //Justin's method
 // users.forEach(user => emails.push(user.email));
 
-//My method
+//My arrow function method
 const getEmails = () => {for (let user of users) {emails.push(user.email)}}
 getEmails()
 // users.forEach(function (user) {
@@ -67,7 +67,7 @@ getEmails()
 //Justin's method
 // users.forEach(user => names.push(user.name));
 
-// My method
+// My arrow function method
 const getNames = () => {for (let user of users) {names.push(user.name)}};
 getNames();
 
