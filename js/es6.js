@@ -53,11 +53,21 @@ let names = [];
 // users.forEach(function (user) {
 //     return emails.push(user.email);
 // });
+
+//Justin's method
+// users.forEach(user => emails.push(user.email));
+
+//My method
 const getEmails = () => {for (let user of users) {emails.push(user.email)}}
 getEmails()
 // users.forEach(function (user) {
 //     return names.push(user.name);
 // });
+
+//Justin's method
+// users.forEach(user => names.push(user.name));
+
+// My method
 const getNames = () => {for (let user of users) {names.push(user.name)}};
 getNames();
 
@@ -77,6 +87,14 @@ users.forEach(function (user) {
     developers.push(`${name}'s email is ${email} knows ${languages.join(', ')}`);
 });
 
+//Refactor of the above forEach loop
+// users.forEach(user => {const{name, email, languages} = user; developers.push(`${name}'s email is ${email} knows ${languages.join(', ')}`)})
+//
+//Another Method
+// users.forEach(function(name, email, languages) {
+// developers.push(`${name}'s email is ${email} knows ${languages.join(', ')}`)
+// };
+
 // TODO: Use `let` for the following variable
 let list = '<ul>';
 
@@ -89,6 +107,6 @@ let list = '<ul>';
 // list += '</ul>';
 
 for (let developer of developers) {
-    list += `<li> ${developer} </li>`;
+    list += `<li>${developer}</li>`;
 }
 list += '</ul>';

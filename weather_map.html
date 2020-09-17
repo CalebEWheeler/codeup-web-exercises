@@ -9,26 +9,7 @@
     <script src="https://kit.fontawesome.com/3fe6d7fc85.js" crossorigin="anonymous"></script>
 
     <style>
-        /*p {*/
-        /*    font-size: .75rem;*/
-        /*    text-align: center;*/
-        /*}*/
 
-        /*li {*/
-        /*    list-style: none;*/
-        /*}*/
-
-        /*#forecastCard {*/
-        /*    background-color: #cddeff;*/
-        /*}*/
-
-        /*#background {*/
-        /*    background-size: cover;*/
-        /*}*/
-
-        /*#forecastCard {*/
-        /*    width: 15rem;*/
-        /*}*/
     </style>
 </head>
 <body>
@@ -44,64 +25,64 @@
 
 <div class="row" id="forecastDays"></div>
     <div id='map' style="width: 600px; height: 600px;">
-<!--        <div id="forecastDays"></div>-->
+
     </div>
 
 
 
-<footer>
-    <div class="row" id="topFooter">
-        <div class="col-3">
-            <img src="" alt="">
-        </div>
-        <div class="col-3">
-            <h4>Address</h4>
-            <ul>
-                <li>1234 Street Name</li>
-                <li>City. AA 999999</li>
-            </ul>
-        </div>
-        <div class="col-3">
-            <h4>Contacts</h4>
-            <ul>
-                <li>Email: support@mobirise.com</li>
-                <li>Phone: +1(0) 000 0000 001</li>
-                <li>Fax: +1(0) 000 0000 002</li>
-            </ul>
-        </div>
-        <div class="col-3">
-            <h4>Download Links</h4>
-            <ul>
-                <a href="">
-                    <li>Android</li>
-                </a>
-                <a href="">
-                    <li>Windows</li>
-                </a>
-                <a href="">
-                    <li>Mac</li>
-                </a>
-                <a href="">
-                    <li>IOS</li>
-                </a>
-            </ul>
-        </div>
-    </div>
-    <hr>
-    <div class="row" id="bottomFooter">
-        <div class="col-6">
-            <p>©Copyright 2020 Footer creations - All Rights Reserved</p>
-        </div>
-        <div class="col-6" id="social-media-links">
-            <a href=""><i class="fab fa-twitter"></i></a>
-            <a href=""><i class="fab fa-facebook"></i></a>
-            <a href=""><i class="fab fa-google-plus-g"></i></a>
-            <a href=""><i class="fab fa-youtube"></i></a>
-            <a href=""><i class="fab fa-instagram"></i></a>
-        </div>
-    </div>
+<!--<footer>-->
+<!--    <div class="row" id="topFooter">-->
+<!--        <div class="col-3">-->
+<!--            <img src="" alt="">-->
+<!--        </div>-->
+<!--        <div class="col-3">-->
+<!--            <h4>Address</h4>-->
+<!--            <ul>-->
+<!--                <li>1234 Street Name</li>-->
+<!--                <li>City. AA 999999</li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--        <div class="col-3">-->
+<!--            <h4>Contacts</h4>-->
+<!--            <ul>-->
+<!--                <li>Email: support@mobirise.com</li>-->
+<!--                <li>Phone: +1(0) 000 0000 001</li>-->
+<!--                <li>Fax: +1(0) 000 0000 002</li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--        <div class="col-3">-->
+<!--            <h4>Download Links</h4>-->
+<!--            <ul>-->
+<!--                <a href="">-->
+<!--                    <li>Android</li>-->
+<!--                </a>-->
+<!--                <a href="">-->
+<!--                    <li>Windows</li>-->
+<!--                </a>-->
+<!--                <a href="">-->
+<!--                    <li>Mac</li>-->
+<!--                </a>-->
+<!--                <a href="">-->
+<!--                    <li>IOS</li>-->
+<!--                </a>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <hr>-->
+<!--    <div class="row" id="bottomFooter">-->
+<!--        <div class="col-6">-->
+<!--            <p>©Copyright 2020 Footer creations - All Rights Reserved</p>-->
+<!--        </div>-->
+<!--        <div class="col-6" id="social-media-links">-->
+<!--            <a href=""><i class="fab fa-twitter"></i></a>-->
+<!--            <a href=""><i class="fab fa-facebook"></i></a>-->
+<!--            <a href=""><i class="fab fa-google-plus-g"></i></a>-->
+<!--            <a href=""><i class="fab fa-youtube"></i></a>-->
+<!--            <a href=""><i class="fab fa-instagram"></i></a>-->
+<!--        </div>-->
+<!--    </div>-->
 
-</footer>
+<!--</footer>-->
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
@@ -137,16 +118,16 @@
 
 
     //OG GEOCODER
-    var geocoder = new MapboxGeocoder({
-        accessToken: MAPBOX_TOKEN,
-        marker: {
-            center: [longitude, latitude],
-            draggable: true
-        },
-        mapboxgl: mapboxgl
-    });
-    //
-    map.addControl(geocoder);
+    // var geocoder = new MapboxGeocoder({
+    //     accessToken: MAPBOX_TOKEN,
+    //     marker: {
+    //         center: [longitude, latitude],
+    //         draggable: true
+    //     },
+    //     mapboxgl: mapboxgl
+    // });
+    // //
+    // map.addControl(geocoder);
 
 
     // var lngLat = geocoder.mapMarker.getLngLat()
@@ -155,15 +136,10 @@
 
     var forecastDays = ''
     var renderForecast = function (data) {
+        console.log(data)
         if (forecastDays === '') {
             for (var i = 0; i < data.list.length; i++) {
                 if (data.list[i].dt_txt.includes('00:00:00')) {
-                    // forecastDays += '<div class="col card"><img src="http://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png" alt="weatherIMG"><p>' + data.list[i].weather[0].description + '</p>' +
-                    //     '<p>' + 'Temp: ' + data.list[i].main.temp + '°</p>' +
-                    //     '<p>' + 'Low: ' + data.list[i].main.temp_min + '°</p>' +
-                    //     '<p>' + 'High: ' + data.list[i].main.temp_max + '°</p>' +
-                    //     '<p>' + 'Humidity: ' + data.list[i].main.humidity + '%</p>' +
-                    //     '<p>' + 'Wind: ' + data.list[i].wind.speed + ' MPH</p></div>'
                     forecastDays += '<div class="col card" ><img src="http://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png" alt="weatherIMG"><p>' + data.list[i].weather[0].description + '</p>' +
                         '<p>' + 'Humidity: ' + data.list[i].main.humidity + '%</p>' +
                         '<p>' + 'Wind Speed: ' + data.list[i].wind.speed + ' MPH</p>' +
@@ -186,9 +162,9 @@
                         '<p>' + 'High: ' + data.list[j].main.temp_max + '°</p></div>'
                 }
             }
-            // console.log(forecastDays)
             $('#forecastDays').append(forecastDays)
         }
+
     }
 
     //default API() on page load
