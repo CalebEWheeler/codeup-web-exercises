@@ -90,8 +90,8 @@
 <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
 <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
 <script>
-    var longitude = -98.9347;
-    var latitude = 29.7231;
+    let longitude = -98.9347;
+    let latitude = 29.7231;
     //refactor weather info by using ONE CALL url: https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&
     // exclude={part}&appid={YOUR API KEY}
     // EXAMPLE:https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&
@@ -101,7 +101,7 @@
 
     mapboxgl.accessToken = MAPBOX_TOKEN;
     // var coordinates = document.getElementById('coordinates');
-    var map = new mapboxgl.Map({
+    const map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [longitude, latitude],
@@ -110,7 +110,7 @@
     });
 
     // OG MARKER THAT WORKS
-    var marker = new mapboxgl.Marker({
+    const marker = new mapboxgl.Marker({
         draggable: true
     })
         .setLngLat([longitude, latitude])
@@ -134,37 +134,36 @@
     // longitude = geocoder.mapMarker.getLngLat().lng;
     // latitude = geocoder.mapMarker.getLngLat().lat;
 
-    var forecastDays = ''
-    var renderForecast = function (data) {
+    let forecastDays = ''
+    const renderForecast = function (data) {
         console.log(data)
         if (forecastDays === '') {
-            for (var i = 0; i < data.list.length; i++) {
+            for (let i = 0; i < data.list.length; i++) {
                 if (data.list[i].dt_txt.includes('00:00:00')) {
-                    forecastDays += '<div class="col card" ><img src="http://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png" alt="weatherIMG"><p>' + data.list[i].weather[0].description + '</p>' +
-                        '<p>' + 'Humidity: ' + data.list[i].main.humidity + '%</p>' +
-                        '<p>' + 'Wind Speed: ' + data.list[i].wind.speed + ' MPH</p>' +
-                        '<p>' + 'Temp: ' + data.list[i].main.temp + '°</p>' +
-                        '<p>' + 'Low: ' + data.list[i].main.temp_min + '°</p>' +
-                        '<p>' + 'High: ' + data.list[i].main.temp_max + '°</p></div>'
+                    forecastDays += `<div class="col card"><img src="http://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png" alt="weatherIMG"><p>${data.list[i].weather[0].description}</p>
+                        <p>Humidity: ${data.list[i].main.humidity}%</p>
+                        <p>Wind Speed: ${data.list[i].wind.speed} MPH</p>
+                        <p>Temp: ${data.list[i].main.temp}°</p>
+                        <p>Low: ' + data.list[i].main.temp_min + '°</p>
+                        <p>High: ${data.list[i].main.temp_max}°</p></div>`
                 }
             }
             $('#forecastDays').append(forecastDays)
         } else {
             $('#forecastDays').replaceWith('<div class="row" id="forecastDays"></div>')
             forecastDays = ''
-            for (var j = 0; j < data.list.length; j++) {
+            for (let j = 0; j < data.list.length; j++) {
                 if (data.list[j].dt_txt.includes('00:00:00')) {
-                    forecastDays += '<div class="col card" ><img src="http://openweathermap.org/img/w/' + data.list[j].weather[0].icon + '.png" alt="weatherIMG"><p>' + data.list[j].weather[0].description + '</p>' +
-                        '<p>' + 'Humidity: ' + data.list[j].main.humidity + '%</p>' +
-                        '<p>' + 'Wind Speed: ' + data.list[j].wind.speed + ' MPH</p>' +
-                        '<p>' + 'Temp: ' + data.list[j].main.temp + '°</p>' +
-                        '<p>' + 'Low: ' + data.list[j].main.temp_min + '°</p>' +
-                        '<p>' + 'High: ' + data.list[j].main.temp_max + '°</p></div>'
+                    forecastDays += `<div class="col card" ><img src="http://openweathermap.org/img/w/${data.list[j].weather[0].icon}.png" alt="weatherIMG"><p>${data.list[j].weather[0].description}</p>
+                        <p>Humidity: ${data.list[j].main.humidity}%</p>
+                        <p>Wind Speed: ${data.list[j].wind.speed} MPH</p>
+                        <p>Temp: ${data.list[j].main.temp}°</p>
+                        <p>Low: ${data.list[j].main.temp_min}°</p>
+                        <p>High: ${data.list[j].main.temp_max}°</p></div>`
                 }
             }
             $('#forecastDays').append(forecastDays)
         }
-
     }
 
     //default API() on page load
@@ -180,7 +179,7 @@
 
     // ALLOWS ME TO GET COORDINATES OF OG MARKER
     function onDragEnd() {
-        var lngLat = marker.getLngLat();
+        let lngLat = marker.getLngLat();
 
         longitude = lngLat.lng;
         latitude = lngLat.lat;
