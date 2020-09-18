@@ -24,10 +24,9 @@
 </nav>
 
 <div class="row" id="forecastDays"></div>
-    <div id='map' style="width: 600px; height: 600px;">
+<div id='map' style="width: 600px; height: 600px;">
 
-    </div>
-
+</div>
 
 
 <!--<footer>-->
@@ -92,12 +91,9 @@
 <script>
     let longitude = -98.9347;
     let latitude = 29.7231;
-    //refactor weather info by using ONE CALL url: https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&
-    // exclude={part}&appid={YOUR API KEY}
-    // EXAMPLE:https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&
-    //     exclude=hourly,daily&appid={YOUR API KEY}
-    //GET RID OF GEOCODER
-    //ADD INPUT THAT WILL UPDATE WEATHER BASED ON LOCATION TYPED IN
+    //TODO'S:
+    // 1. FIX LOCATION DISPLAY BY GETTING GEOCODE FIGURED OUT
+    // 2.ADD INPUT THAT WILL UPDATE WEATHER BASED ON LOCATION TYPED IN
 
     mapboxgl.accessToken = MAPBOX_TOKEN;
     // var coordinates = document.getElementById('coordinates');
@@ -118,16 +114,29 @@
 
 
     //OG GEOCODER
-    // var geocoder = new MapboxGeocoder({
-    //     accessToken: MAPBOX_TOKEN,
-    //     marker: {
-    //         center: [longitude, latitude],
-    //         draggable: true
-    //     },
-    //     mapboxgl: mapboxgl
-    // });
-    // //
-    // map.addControl(geocoder);
+    var geocoder = new MapboxGeocoder({
+        accessToken: MAPBOX_TOKEN,
+        marker: {
+            center: [longitude, latitude],
+            draggable: true
+        },
+        mapboxgl: mapboxgl
+    });
+    //
+    map.addControl(geocoder);
+
+    //  PULLED FROM SAHARA, NEEDS TO BE MODIFIED TO ACCEPT GEOCODER
+    // function geocode(search, token) {
+    //     var baseUrl = 'https://api.mapbox.com';
+    //     var endPoint = '/geocoding/v5/mapbox.places/';
+    //     return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + token)
+    //         .then(function(res) {
+    //             return res.json();
+    //             // to get all the data from the request, comment out the following three lines...
+    //         }).then(function(data) {
+    //             return data.features[0].center;
+    //         });
+    // }
 
 
     // var lngLat = geocoder.mapMarker.getLngLat()
@@ -137,43 +146,47 @@
     let forecastDays = ''
     const renderForecast = function (data) {
         console.log(data)
+        // let currentWeather = <div><img src="http://openweathermap.org/img/w/${data.current.weather[0].icon}.png"</div>
         if (forecastDays === '') {
-            for (let i = 0; i < data.list.length; i++) {
-                if (data.list[i].dt_txt.includes('00:00:00')) {
-                    forecastDays += `<div class="col card"><img src="http://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png" alt="weatherIMG"><p>${data.list[i].weather[0].description}</p>
-                        <p>Humidity: ${data.list[i].main.humidity}%</p>
-                        <p>Wind Speed: ${data.list[i].wind.speed} MPH</p>
-                        <p>Temp: ${data.list[i].main.temp}°</p>
-                        <p>Low: ' + data.list[i].main.temp_min + '°</p>
-                        <p>High: ${data.list[i].main.temp_max}°</p></div>`
-                }
+            for (let i = 0; i < data.daily.length; i++) {
+                forecastDays += `<div class="col card"><img src="http://openweathermap.org/img/w/${data.daily[i].weather[0].icon}.png" alt="weatherIMG"><p>${data.daily[i].weather[0].description}</p>
+                        <p>Humidity: ${data.daily[i].humidity}%</p>
+                        <p>Wind Speed: ${data.daily[i].wind_speed} MPH</p>
+                        <p>Temp: ${data.daily[i].temp.day}°</p>
+                        <p>Low: ${data.daily[i].temp.min}°</p>
+                        <p>High: ${data.daily[i].temp.max}°</p></div>`
             }
             $('#forecastDays').append(forecastDays)
         } else {
             $('#forecastDays').replaceWith('<div class="row" id="forecastDays"></div>')
             forecastDays = ''
-            for (let j = 0; j < data.list.length; j++) {
-                if (data.list[j].dt_txt.includes('00:00:00')) {
-                    forecastDays += `<div class="col card" ><img src="http://openweathermap.org/img/w/${data.list[j].weather[0].icon}.png" alt="weatherIMG"><p>${data.list[j].weather[0].description}</p>
-                        <p>Humidity: ${data.list[j].main.humidity}%</p>
-                        <p>Wind Speed: ${data.list[j].wind.speed} MPH</p>
-                        <p>Temp: ${data.list[j].main.temp}°</p>
-                        <p>Low: ${data.list[j].main.temp_min}°</p>
-                        <p>High: ${data.list[j].main.temp_max}°</p></div>`
-                }
+            for (let j = 0; j < data.daily.length; j++) {
+                forecastDays += `
+                        <div class="col card">
+                            <img src="http://openweathermap.org/img/w/${data.daily[j].weather[0].icon}.png" alt="weatherIMG">
+                            <p>${data.daily[j].weather[0].description}</p>
+                            <p>Humidity: ${data.daily[j].humidity}%</p>
+                            <p>Wind Speed: ${data.daily[j].wind_speed} MPH</p>
+                            <p>Temp: ${data.daily[j].temp.day}°</p>
+                            <p>Low: ${data.daily[j].temp.min}°</p>
+                            <p>High: ${data.daily[j].temp.max}°</p>
+                        </div>`
             }
             $('#forecastDays').append(forecastDays)
+
         }
     }
 
+
+
     //default API() on page load
-    $.get("http://api.openweathermap.org/data/2.5/forecast", {
+    $.get("http://api.openweathermap.org/data/2.5/onecall", {
         APPID: OPEN_WEATHER_APPID,
         lat: latitude,
         lon: longitude,
         units: "imperial"
     }).done(function (data) {
-        $('#location').html(data.city['name'])
+        $('#location').html(`${data.lon} ${data.lat}`)
         renderForecast(data)
     });
 
@@ -184,13 +197,13 @@
         longitude = lngLat.lng;
         latitude = lngLat.lat;
 
-        $.get("http://api.openweathermap.org/data/2.5/forecast", {
+        $.get("http://api.openweathermap.org/data/2.5/onecall", {
             APPID: OPEN_WEATHER_APPID,
             lat: latitude,
             lon: longitude,
             units: "imperial"
         }).done(function (data) {
-            $('#location').html(data.city['name'])
+            // $('#location').html(data.city['name'])
             renderForecast(data)
         });
     }
