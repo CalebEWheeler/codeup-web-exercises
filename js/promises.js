@@ -1,26 +1,33 @@
-const getLastGitCommit = function () {
-fetch('https://api.github.com/users/calebewheeler/events', {headers: GIT_TOKEN})
-    .then(response => {
-        // console.log(response.json())
-        return response.json();
-    })
-    .then(data => {
-        console.log(data[0].created_at.slice(0,10))
-        return data[0].created_at.slice(0,10);
-    })
+let getLastGitCommit = (username) => {
+    let url = `https://api.github.com/users/${username}/events`
+    return fetch(url, {headers: GIT_TOKEN})
+    .then(response => response.json())
+    .then(events => events.filter(event => event.type === "PushEvent"))
+    .then(pushEvents => pushEvents[0].created_at.slice(0,10))
 }
-getLastGitCommit();
+
+document.getElementById("lookitup").addEventListener("click",
+        (ev) => {
+        ev.preventDefault();
+        let username = document.getElementById("username").value;
+        getLastGitCommit(username)
+            .then(date => {
+                document.getElementById("output").innerText = date;
+            })
+    })
 
 const wait = function (num) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if (num)
-                resolve();
+               return resolve();
             else
-                reject();
+               return reject();
 
         }, num)
     })
 }
 wait(1000).then(() => console.log("You'll see this after 1 second"))
 wait(3000).then(() => console.log("You'll see this after 3 seconds"))
+
+//================      BONUS       =====================//
