@@ -8,44 +8,45 @@
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-<script>
-    //REFACTOR TO UTILIZE ES6
-    $(document).ready(function() {
-        $('#button').click(function() {
-            let num = $('#input').val();
+<script src="../promises-lecture.js"></script>
+<!--<script>-->
+<!--    //REFACTOR TO UTILIZE ES6-->
+<!--    $(document).ready(function() {-->
+<!--        $('#button').click(function() {-->
+<!--            let num = $('#input').val();-->
 
-            for(let i=0; i<= num; i++) {
-                if(i % 15 === 0) {
-                    $('#output').append("FizzBuzz<br>")
-                }
-                else if(i % 3 === 0) {
-                    $('#output').append("Buzz<br>")
-                }
-                else if(i % 5 === 0) {
-                    $('#output').append("Fizz<br>")
-                }
-                else {
-                    $('#output').append(i + '<br>')
-                }
-            }
-        })
-    })
+<!--            for(let i=0; i<= num; i++) {-->
+<!--                if(i % 15 === 0) {-->
+<!--                    $('#output').append("FizzBuzz<br>")-->
+<!--                }-->
+<!--                else if(i % 3 === 0) {-->
+<!--                    $('#output').append("Buzz<br>")-->
+<!--                }-->
+<!--                else if(i % 5 === 0) {-->
+<!--                    $('#output').append("Fizz<br>")-->
+<!--                }-->
+<!--                else {-->
+<!--                    $('#output').append(i + '<br>')-->
+<!--                }-->
+<!--            }-->
+<!--        })-->
+<!--    })-->
 
-    //ES6 VARIANT
-    const fizzbuzz = (num) => {
-        for (let i=1;i<=num;i++){
-            if(i%15 === 0)
-                console.log(`fizzbuzz`);
-            else if(i%5 === 0)
-                console.log(`buzz`);
-            else if(i%3 === 0)
-                console.log(`fizz`);
-            else
-                    console.log((`${i}`))
-        }
-    }
-    fizzbuzz(50);
+<!--    //ES6 VARIANT-->
+<!--    const fizzbuzz = (num) => {-->
+<!--        for (let i=1;i<=num;i++){-->
+<!--            if(i%15 === 0)-->
+<!--                console.log(`fizzbuzz`);-->
+<!--            else if(i%5 === 0)-->
+<!--                console.log(`buzz`);-->
+<!--            else if(i%3 === 0)-->
+<!--                console.log(`fizz`);-->
+<!--            else-->
+<!--                    console.log((`${i}`))-->
+<!--        }-->
+<!--    }-->
+<!--    fizzbuzz(50);-->
 
-</script>
+<!--</script>-->
 </body>
 </html>
